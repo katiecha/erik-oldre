@@ -13,7 +13,7 @@ type Punctum = {
 };
 
 /**
- * VGLUT3+ perisomatic synaptic puncta — the glowing magenta dots that Erik
+ * VGLUT3+ perisomatic synaptic puncta — the glowing synaptic dots that Erik
  * literally counts in his confocal images. Distributed over the soma surface,
  * each pulses on its own phase and "ignites" as the synapse stage arrives.
  */

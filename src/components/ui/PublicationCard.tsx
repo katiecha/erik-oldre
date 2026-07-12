@@ -12,11 +12,11 @@ export function PublicationCard({ pub }: { pub: Publication }) {
       className="group block rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-white/25 hover:bg-white/[0.06]"
     >
       <div className="flex items-center gap-3">
-        <span className="font-mono text-xs uppercase tracking-widest text-[#22E39A]">
+        <span className="font-mono text-xs uppercase tracking-widest text-[#34D399]">
           {pub.venue}
         </span>
         {pub.firstAuthor && (
-          <span className="rounded-full border border-[#FF2E88]/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[#FF2E88]">
+          <span className="rounded-full border border-[#5EE9F0]/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-[#5EE9F0]">
             First author
           </span>
         )}
@@ -35,7 +35,7 @@ export function PublicationCard({ pub }: { pub: Publication }) {
       <div className="mt-4 flex items-center gap-2 font-mono text-xs text-white/40">
         <span>{pub.detail}</span>
         <span aria-hidden>·</span>
-        <span className="text-white/60 group-hover:text-[#FF2E88]">
+        <span className="text-white/60 group-hover:text-[#5EE9F0]">
           doi:{pub.doi} ↗
         </span>
       </div>

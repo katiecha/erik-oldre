@@ -49,8 +49,8 @@ export function NeuronJourney() {
         <color attach="background" args={[PALETTE.bg]} />
         <fog attach="fog" args={[PALETTE.bg, 12, 30]} />
         <ambientLight intensity={0.25} />
-        <pointLight position={[6, 8, 10]} intensity={40} color="#8899ff" />
-        <pointLight position={[-8, -4, 6]} intensity={25} color={PALETTE.puncta} />
+        <pointLight position={[6, 8, 10]} intensity={40} color="#88aaff" />
+        <pointLight position={[-8, -4, 6]} intensity={22} color={PALETTE.gfp} />
 
         <CameraRig />
 
@@ -72,7 +72,7 @@ function StaticField() {
       className="field-grain pointer-events-none fixed inset-0 z-0"
       style={{
         background:
-          "radial-gradient(ellipse at 30% 25%, rgba(59,130,246,0.18), transparent 45%), radial-gradient(ellipse at 72% 60%, rgba(255,46,136,0.16), transparent 45%), radial-gradient(ellipse at 50% 90%, rgba(34,227,154,0.12), transparent 50%), #04040A",
+          "radial-gradient(ellipse at 30% 25%, rgba(59,130,246,0.16), transparent 45%), radial-gradient(ellipse at 72% 60%, rgba(45,212,191,0.12), transparent 45%), radial-gradient(ellipse at 50% 90%, rgba(52,211,153,0.12), transparent 50%), #060A0F",
       }}
     />
   );

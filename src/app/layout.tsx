@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Erik Oldre — Materials Scientist",
   description:
-    "Erik Oldre — NSF Graduate Research Fellow and Ph.D. researcher in Materials Science & Engineering at Cornell. A cinematic journey through neurons, molecules, and self-assembled quantum materials.",
+    "Erik Oldre — NSF Graduate Research Fellow and Ph.D. student in Materials Science & Engineering at Cornell. Research in block copolymer self-assembly, synaptic cell adhesion, and quantum materials.",
   keywords: [
     "Erik Oldre",
     "Cornell",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Erik Oldre — Materials Scientist",
     description:
-      "A cinematic journey through neurons, molecules, and self-assembled quantum materials.",
+      "Research in block copolymer self-assembly, synaptic cell adhesion, and quantum materials.",
     url: siteUrl,
     siteName: "Erik Oldre",
     images: [{ url: "/erik.jpg", width: 800, height: 800, alt: "Erik Oldre" }],
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Erik Oldre — Materials Scientist",
     description:
-      "A cinematic journey through neurons, molecules, and self-assembled quantum materials.",
+      "Research in block copolymer self-assembly, synaptic cell adhesion, and quantum materials.",
     images: ["/erik.jpg"],
   },
 };
@@ -66,7 +66,7 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#04040A] text-white">{children}</body>
+      <body className="min-h-full bg-[#060A0F] text-white">{children}</body>
     </html>
   );
 }

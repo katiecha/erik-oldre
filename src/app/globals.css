@@ -1,12 +1,11 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg: #04040a;
+  --color-bg: #060a0f;
   --color-soma: #3b82f6;
-  --color-puncta: #ff2e88;
-  --color-gfp: #22e39a;
-  --color-farred: #d400ff;
-  --color-tdtomato: #ff5a36;
+  --color-puncta: #5ee9f0;
+  --color-gfp: #34d399;
+  --color-teal: #2dd4bf;
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
@@ -15,7 +14,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #04040a;
+  background: #060a0f;
 }
 
 body {
@@ -43,7 +42,7 @@ body {
 .field-grain {
   background-image: radial-gradient(
     circle at 50% 40%,
-    rgba(255, 255, 255, 0.03),
+    rgba(120, 200, 255, 0.04),
     transparent 60%
   );
 }

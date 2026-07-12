@@ -12,11 +12,11 @@ export function ContactSection() {
     <section className="relative px-6 py-28 sm:px-12">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.35em] text-[#22E39A]">
-            Get in touch
+          <p className="font-mono text-xs uppercase tracking-[0.35em] text-[#34D399]">
+            Contact
           </p>
           <h2 className="mt-4 font-serif text-4xl text-white sm:text-5xl">
-            Let&rsquo;s talk science.
+            Get in touch.
           </h2>
         </Reveal>
 
@@ -32,7 +32,7 @@ export function ContactSection() {
               <span className="font-mono text-[11px] uppercase tracking-widest text-white/45">
                 {l.label}
               </span>
-              <span className="mt-1.5 text-white group-hover:text-[#22E39A]">
+              <span className="mt-1.5 text-white group-hover:text-[#34D399]">
                 {l.value}
               </span>
             </a>

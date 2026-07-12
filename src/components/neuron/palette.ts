@@ -1,22 +1,23 @@
 import * as THREE from "three";
 
 /**
- * Fluorescence-microscopy palette drawn from Erik's actual imaging channels.
- * Each color maps to a real fluorophore / marker used in his neuroscience work.
+ * A restrained, cool palette — blues, greens, and teals only. No warm hues.
+ * The keys keep their microscopy-channel names, but every value sits in the
+ * blue→green range for a professional, scientific read.
  */
 export const PALETTE = {
-  /** near-black imaging field */
-  bg: "#04040A",
+  /** deep blue-black imaging field */
+  bg: "#060A0F",
   /** MATH2+ pyramidal soma (blue) */
   soma: "#3B82F6",
-  /** VGLUT3+ CCK-basket synaptic puncta (magenta, Alexa 555) */
-  puncta: "#FF2E88",
-  /** EGFP / VGAT (green, Alexa 488) */
-  gfp: "#22E39A",
-  /** Alexa 647 far-red channel (violet) */
-  farRed: "#D400FF",
-  /** tdTomato reporter (red-orange) */
-  tdTomato: "#FF5A36",
+  /** VGLUT3+ CCK-basket synaptic puncta (cyan) */
+  puncta: "#5EE9F0",
+  /** EGFP / VGAT reporter (green) */
+  gfp: "#34D399",
+  /** structural / accent (teal) */
+  farRed: "#2DD4BF",
+  /** secondary accent (green-teal) */
+  tdTomato: "#1FB6A6",
 } as const;
 
 export type PaletteKey = keyof typeof PALETTE;

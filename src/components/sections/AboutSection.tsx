@@ -55,7 +55,7 @@ export function AboutSection() {
             <ul className="mt-6 space-y-6 border-l border-white/10 pl-6">
               {RESEARCH_HISTORY.map((r) => (
                 <li key={r.lab} className="relative">
-                  <span className="absolute -left-[27px] top-1.5 h-2 w-2 rounded-full bg-[#22E39A] shadow-[0_0_10px_#22E39A]" />
+                  <span className="absolute -left-[27px] top-1.5 h-2 w-2 rounded-full bg-[#34D399] shadow-[0_0_10px_#34D399]" />
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4">
                     <h3 className="font-serif text-lg text-white">
                       {r.lab}

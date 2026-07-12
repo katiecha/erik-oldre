@@ -28,7 +28,7 @@ export function HeroOverlay() {
 
       <div className="pointer-events-none absolute bottom-10 flex flex-col items-center gap-2 text-white/40">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
-          Scroll to descend
+          Scroll
         </span>
         <span className="h-10 w-px animate-pulse bg-gradient-to-b from-white/50 to-transparent" />
       </div>

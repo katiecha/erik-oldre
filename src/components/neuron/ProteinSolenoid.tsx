@@ -26,7 +26,7 @@ function solenoidCurve() {
 /**
  * Stage 02 — the molecule. A stylized rendering of Ankyrin B's ANK-repeat
  * solenoid (blue coil + 24 green "repeat" rungs) with the NrCAM FIGQY strand
- * (magenta) docking into a bright binding pocket (violet). Evocative of the
+ * (cyan) docking into a bright binding pocket (teal). Evocative of the
  * AlphaFold models in Erik's structural paper, not a literal PDB.
  */
 export function ProteinSolenoid() {

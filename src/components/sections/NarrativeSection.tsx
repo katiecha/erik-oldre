@@ -25,7 +25,7 @@ export function NarrativeSection({
         side === "right" ? "justify-end" : "justify-start"
       }`}
     >
-      <Reveal className="w-full max-w-xl rounded-2xl border border-white/10 bg-black/30 p-8 backdrop-blur-sm sm:p-10">
+      <Reveal className="w-full max-w-xl rounded-xl border border-white/10 bg-[#0A121B]/90 p-8 shadow-[0_24px_70px_-24px_rgba(0,0,0,0.85)] backdrop-blur-md sm:p-10">
         <SectionHeading eyebrow={stage.eyebrow} title={stage.title} accent={accent}>
           <p>{stage.body}</p>
         </SectionHeading>

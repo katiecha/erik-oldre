@@ -7,7 +7,7 @@ export function PublicationsSection() {
     <section className="relative px-6 py-24 sm:px-12">
       <div className="mx-auto max-w-3xl">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.35em] text-[#D400FF]">
+          <p className="font-mono text-xs uppercase tracking-[0.35em] text-[#3B82F6]">
             Publications
           </p>
           <h2 className="mt-4 font-serif text-4xl text-white sm:text-5xl">

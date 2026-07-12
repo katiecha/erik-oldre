@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 export function SectionHeading({
   eyebrow,
   title,
-  accent = "#FF2E88",
+  accent = "#34D399",
   children,
 }: {
   eyebrow: string;
