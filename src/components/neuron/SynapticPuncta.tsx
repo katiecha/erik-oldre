@@ -3,8 +3,10 @@
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { STAGE_INDEX } from "@/lib/content";
+import { createSeededRandom } from "@/lib/prng";
 import { COLORS } from "./palette";
-import { scrollStore, stageWeight } from "./useScrollStage";
+import { applyStageVisibility, GLOW_MATERIAL_PROPS } from "./sceneUtils";
 
 type Punctum = {
   base: THREE.Vector3;
@@ -25,11 +27,7 @@ export function SynapticPuncta({
   radius: [number, number, number];
 }) {
   const puncta = useMemo<Punctum[]>(() => {
-    let seed = 909;
-    const rand = () => {
-      seed = (seed * 16807) % 2147483647;
-      return seed / 2147483647;
-    };
+    const rand = createSeededRandom(909);
     const out: Punctum[] = [];
     for (let i = 0; i < count; i++) {
       // Fibonacci-ish sphere sampling, biased toward the perisomatic belt.
@@ -64,9 +62,8 @@ export function SynapticPuncta({
     t.current += delta;
     if (!mesh.current) return;
 
-    const w = stageWeight(scrollStore.progress, 1);
-    mesh.current.visible = w > 0.01;
-    if (!mesh.current.visible) return;
+    const w = applyStageVisibility(mesh.current, STAGE_INDEX.synapse);
+    if (w === null) return;
 
     for (let i = 0; i < puncta.length; i++) {
       const p = puncta[i];
@@ -87,15 +84,7 @@ export function SynapticPuncta({
       frustumCulled={false}
     >
       <sphereGeometry args={[1, 10, 10]} />
-      <meshBasicMaterial
-        ref={mat}
-        color={COLORS.puncta}
-        transparent
-        opacity={0}
-        toneMapped={false}
-        blending={THREE.AdditiveBlending}
-        depthWrite={false}
-      />
+      <meshBasicMaterial ref={mat} color={COLORS.puncta} {...GLOW_MATERIAL_PROPS} />
     </instancedMesh>
   );
 }

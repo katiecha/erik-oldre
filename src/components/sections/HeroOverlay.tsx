@@ -8,7 +8,7 @@ export function HeroOverlay() {
       data-stage="hero"
       className="relative flex min-h-[100dvh] flex-col items-center justify-center px-6 text-center"
     >
-      <p className="font-mono text-xs uppercase tracking-[0.4em] text-white/60">
+      <p className="font-mono text-xs uppercase tracking-[0.4em] text-white/55">
         {PROFILE.fellowship}
       </p>
 
@@ -26,7 +26,7 @@ export function HeroOverlay() {
         {PROFILE.affiliation}
       </p>
 
-      <div className="pointer-events-none absolute bottom-10 flex flex-col items-center gap-2 text-white/40">
+      <div className="pointer-events-none absolute bottom-10 flex flex-col items-center gap-2 text-white/45">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
           Scroll
         </span>

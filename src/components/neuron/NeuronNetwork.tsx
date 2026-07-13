@@ -3,8 +3,11 @@
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { STAGE_INDEX } from "@/lib/content";
+import { createSeededRandom } from "@/lib/prng";
 import { COLORS } from "./palette";
 import { scrollStore, stageWeight } from "./useScrollStage";
+import { GLOW_MATERIAL_PROPS, useRunOnce } from "./sceneUtils";
 import type { Quality } from "./NeuronJourney";
 
 const NODE_COLORS = [COLORS.soma, COLORS.puncta, COLORS.gfp, COLORS.farRed];
@@ -17,12 +20,7 @@ type NetworkData = {
 };
 
 function buildNetwork(count: number): NetworkData {
-  // Deterministic pseudo-random so hydration is stable across renders.
-  let seed = 1337;
-  const rand = () => {
-    seed = (seed * 16807) % 2147483647;
-    return seed / 2147483647;
-  };
+  const rand = createSeededRandom(1337);
 
   const positions: THREE.Vector3[] = [];
   const phases: number[] = [];
@@ -94,34 +92,32 @@ export function NeuronNetwork({ quality }: { quality: Quality }) {
   const lineMat = useRef<THREE.LineBasicMaterial>(null);
   const t = useRef(0);
   const dummy = useMemo(() => new THREE.Object3D(), []);
+  const runOnce = useRunOnce();
 
-  // Set instance transforms + colors once.
-  const applied = useRef(false);
   useFrame((_, delta) => {
     t.current += delta;
     const g = group.current;
-    if (!g || !mesh.current) return;
+    const m = mesh.current;
+    if (!g || !m) return;
 
-    if (!applied.current) {
+    runOnce(() => {
       for (let i = 0; i < count; i++) {
         dummy.position.copy(data.positions[i]);
         const s = 0.14 + (i % 3) * 0.04;
         dummy.scale.setScalar(s);
         dummy.updateMatrix();
-        mesh.current.setMatrixAt(i, dummy.matrix);
-        mesh.current.setColorAt(i, NODE_COLORS[data.colorIdx[i]]);
+        m.setMatrixAt(i, dummy.matrix);
+        m.setColorAt(i, NODE_COLORS[data.colorIdx[i]]);
       }
-      mesh.current.instanceMatrix.needsUpdate = true;
-      if (mesh.current.instanceColor)
-        mesh.current.instanceColor.needsUpdate = true;
-      applied.current = true;
-    }
+      m.instanceMatrix.needsUpdate = true;
+      if (m.instanceColor) m.instanceColor.needsUpdate = true;
+    });
 
     // Weight: full on the hero, a soft echo behind the About stage.
     const w = Math.min(
       1,
-      stageWeight(scrollStore.progress, 0) +
-        0.4 * stageWeight(scrollStore.progress, 4),
+      stageWeight(scrollStore.progress, STAGE_INDEX.hero) +
+        0.4 * stageWeight(scrollStore.progress, STAGE_INDEX.about),
     );
     g.visible = w > 0.01;
     if (!g.visible) return;
@@ -141,26 +137,11 @@ export function NeuronNetwork({ quality }: { quality: Quality }) {
         frustumCulled={false}
       >
         <icosahedronGeometry args={[1, 2]} />
-        <meshBasicMaterial
-          ref={nodeMat}
-          transparent
-          opacity={0}
-          toneMapped={false}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
+        <meshBasicMaterial ref={nodeMat} {...GLOW_MATERIAL_PROPS} />
       </instancedMesh>
 
       <lineSegments geometry={data.lineGeometry}>
-        <lineBasicMaterial
-          ref={lineMat}
-          vertexColors
-          transparent
-          opacity={0}
-          toneMapped={false}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
+        <lineBasicMaterial ref={lineMat} vertexColors {...GLOW_MATERIAL_PROPS} />
       </lineSegments>
     </group>
   );

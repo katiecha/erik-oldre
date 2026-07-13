@@ -3,8 +3,9 @@
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { STAGE_INDEX } from "@/lib/content";
 import { COLORS } from "./palette";
-import { scrollStore, stageWeight } from "./useScrollStage";
+import { applyStageVisibility, GLOW_MATERIAL_PROPS, useRunOnce } from "./sceneUtils";
 import type { Quality } from "./NeuronJourney";
 
 const BLOCK_COLORS = [
@@ -55,31 +56,29 @@ export function BlockCopolymer({ quality }: { quality: Quality }) {
   const mesh = useRef<THREE.InstancedMesh>(null);
   const mat = useRef<THREE.MeshBasicMaterial>(null);
   const dummy = useMemo(() => new THREE.Object3D(), []);
-  const applied = useRef(false);
+  const runOnce = useRunOnce();
   const t = useRef(0);
 
   useFrame((_, delta) => {
     t.current += delta;
     const g = group.current;
-    if (!g || !mesh.current) return;
+    const m = mesh.current;
+    if (!g || !m) return;
 
-    if (!applied.current) {
+    runOnce(() => {
       for (let i = 0; i < beads.length; i++) {
         dummy.position.copy(beads[i].pos);
         dummy.scale.setScalar(beads[i].scale);
         dummy.updateMatrix();
-        mesh.current.setMatrixAt(i, dummy.matrix);
-        mesh.current.setColorAt(i, beads[i].color);
+        m.setMatrixAt(i, dummy.matrix);
+        m.setColorAt(i, beads[i].color);
       }
-      mesh.current.instanceMatrix.needsUpdate = true;
-      if (mesh.current.instanceColor)
-        mesh.current.instanceColor.needsUpdate = true;
-      applied.current = true;
-    }
+      m.instanceMatrix.needsUpdate = true;
+      if (m.instanceColor) m.instanceColor.needsUpdate = true;
+    });
 
-    const w = stageWeight(scrollStore.progress, 3);
-    g.visible = w > 0.01;
-    if (!g.visible) return;
+    const w = applyStageVisibility(g, STAGE_INDEX.materials);
+    if (w === null) return;
 
     g.rotation.y = t.current * 0.22;
     g.rotation.z = Math.sin(t.current * 0.15) * 0.08;
@@ -94,14 +93,7 @@ export function BlockCopolymer({ quality }: { quality: Quality }) {
         frustumCulled={false}
       >
         <sphereGeometry args={[1, 10, 10]} />
-        <meshBasicMaterial
-          ref={mat}
-          transparent
-          opacity={0}
-          toneMapped={false}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
+        <meshBasicMaterial ref={mat} {...GLOW_MATERIAL_PROPS} />
       </instancedMesh>
     </group>
   );

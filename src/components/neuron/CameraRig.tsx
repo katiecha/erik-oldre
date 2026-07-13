@@ -3,10 +3,18 @@
 import { useRef } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import { STAGES } from "@/lib/content";
 import { scrollStore, stageWeight, STAGE_COUNT } from "./useScrollStage";
 
 /** Per-stage camera distance from the origin (the scene zooms in, then out). */
-const STAGE_Z = [15, 7, 4.6, 10, 13.5];
+const STAGE_Z = STAGES.map((s) => s.cameraZ);
+
+/** Parallax fully fades out once scroll progress passes this fraction. */
+const PARALLAX_FALLOFF = 2.2;
+const PARALLAX_X_STRENGTH = 1.1;
+const PARALLAX_Y_STRENGTH = 0.7;
+/** Frame-rate independent smoothing factor for the camera lerp. */
+const CAMERA_SMOOTHING = 0.0016;
 
 /**
  * Drives the single camera from scroll progress. Each stage contributes a
@@ -32,14 +40,14 @@ export function CameraRig() {
     else z = STAGE_Z[0];
 
     // Gentle parallax that eases off as we scroll past the hero.
-    const parallax = 1 - Math.min(1, p * 2.2);
-    const px = scrollStore.pointerX * 1.1 * parallax;
-    const py = -scrollStore.pointerY * 0.7 * parallax;
+    const parallax = 1 - Math.min(1, p * PARALLAX_FALLOFF);
+    const px = scrollStore.pointerX * PARALLAX_X_STRENGTH * parallax;
+    const py = -scrollStore.pointerY * PARALLAX_Y_STRENGTH * parallax;
 
     target.current.set(px, py, z);
 
     // Frame-rate independent smoothing.
-    const k = 1 - Math.pow(0.0016, delta);
+    const k = 1 - Math.pow(CAMERA_SMOOTHING, delta);
     camera.position.lerp(target.current, k);
     camera.lookAt(0, 0, 0);
   });

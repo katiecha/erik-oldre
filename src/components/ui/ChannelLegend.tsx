@@ -10,7 +10,7 @@ export function ChannelLegend() {
             className="h-2.5 w-2.5 shrink-0 rounded-full"
             style={{ backgroundColor: c.color, boxShadow: `0 0 10px ${c.color}` }}
           />
-          <span className="text-sm text-white/85">{c.label}</span>
+          <span className="text-sm text-white/90">{c.label}</span>
           <span className="font-mono text-[11px] text-white/45">{c.note}</span>
         </li>
       ))}

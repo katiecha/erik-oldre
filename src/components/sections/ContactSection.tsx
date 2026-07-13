@@ -1,5 +1,7 @@
 import { PROFILE } from "@/lib/content";
+import { PALETTE } from "@/components/neuron/palette";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const LINKS = [
   { label: "Email", href: PROFILE.links.email, value: PROFILE.email },
@@ -12,12 +14,7 @@ export function ContactSection() {
     <section className="relative px-6 py-28 sm:px-12">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <p className="font-mono text-xs uppercase tracking-[0.35em] text-[#34D399]">
-            Contact
-          </p>
-          <h2 className="mt-4 font-serif text-4xl text-white sm:text-5xl">
-            Get in touch.
-          </h2>
+          <SectionHeading eyebrow="Contact" title="Get in touch." accent={PALETTE.gfp} center />
         </Reveal>
 
         <Reveal delay={0.08} className="mt-10 flex flex-wrap justify-center gap-4">
@@ -32,7 +29,7 @@ export function ContactSection() {
               <span className="font-mono text-[11px] uppercase tracking-widest text-white/45">
                 {l.label}
               </span>
-              <span className="mt-1.5 text-white group-hover:text-[#34D399]">
+              <span className="mt-1.5 text-white group-hover:text-gfp">
                 {l.value}
               </span>
             </a>

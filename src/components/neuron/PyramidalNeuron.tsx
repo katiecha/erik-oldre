@@ -3,8 +3,9 @@
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { STAGE_INDEX } from "@/lib/content";
 import { PALETTE } from "./palette";
-import { scrollStore, stageWeight } from "./useScrollStage";
+import { applyStageVisibility, GLOW_MATERIAL_PROPS } from "./sceneUtils";
 import { SynapticPuncta } from "./SynapticPuncta";
 import type { Quality } from "./NeuronJourney";
 
@@ -50,11 +51,7 @@ export function PyramidalNeuron({ quality }: { quality: Quality }) {
     () =>
       new THREE.MeshBasicMaterial({
         color: new THREE.Color(PALETTE.soma),
-        transparent: true,
-        opacity: 0,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false,
-        toneMapped: false,
+        ...GLOW_MATERIAL_PROPS,
       }),
     [],
   );
@@ -63,11 +60,7 @@ export function PyramidalNeuron({ quality }: { quality: Quality }) {
     () =>
       new THREE.MeshBasicMaterial({
         color: new THREE.Color(PALETTE.soma),
-        transparent: true,
-        opacity: 0,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false,
-        toneMapped: false,
+        ...GLOW_MATERIAL_PROPS,
       }),
     [],
   );
@@ -76,11 +69,7 @@ export function PyramidalNeuron({ quality }: { quality: Quality }) {
     () =>
       new THREE.MeshBasicMaterial({
         color: new THREE.Color(PALETTE.gfp),
-        transparent: true,
-        opacity: 0,
-        blending: THREE.AdditiveBlending,
-        depthWrite: false,
-        toneMapped: false,
+        ...GLOW_MATERIAL_PROPS,
       }),
     [],
   );
@@ -114,9 +103,8 @@ export function PyramidalNeuron({ quality }: { quality: Quality }) {
     const g = group.current;
     if (!g) return;
 
-    const w = stageWeight(scrollStore.progress, 1);
-    g.visible = w > 0.01;
-    if (!g.visible) return;
+    const w = applyStageVisibility(g, STAGE_INDEX.synapse);
+    if (w === null) return;
 
     g.rotation.y = Math.sin(t.current * 0.12) * 0.35 + t.current * 0.06;
 

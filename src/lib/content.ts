@@ -4,6 +4,8 @@
  * confirm is marked with a TODO comment rather than invented.
  */
 
+import { PALETTE } from "@/components/neuron/palette";
+
 export const PROFILE = {
   name: "Erik Oldre",
   fullName: "Erik N. Oldre",
@@ -108,6 +110,8 @@ export type StageId = "hero" | "synapse" | "molecule" | "materials" | "about";
 export type Stage = {
   id: StageId;
   index: number;
+  /** Camera distance from the origin while this stage is centered (see CameraRig). */
+  cameraZ: number;
   eyebrow: string;
   title: string;
   body?: string;
@@ -117,6 +121,7 @@ export const STAGES: Stage[] = [
   {
     id: "hero",
     index: 0,
+    cameraZ: 15,
     eyebrow: "Erik Oldre",
     title: "Self-assembly and structure, across scales.",
     body: "NSF Graduate Research Fellow · Materials Science & Engineering, Cornell University.",
@@ -124,6 +129,7 @@ export const STAGES: Stage[] = [
   {
     id: "synapse",
     index: 1,
+    cameraZ: 7,
     eyebrow: "01 — Neuroscience",
     title: "Cell adhesion at the perisomatic synapse.",
     body: "Investigated the cell adhesion molecule NrCAM and the scaffold protein Ankyrin B in the regulation of perisomatic synapses formed by cholecystokinin (CCK) basket interneurons onto pyramidal neurons of the medial prefrontal cortex. Using immunofluorescence with confocal microscopy in NrCAM- and Ankyrin B-null mouse models, quantified a selective reduction in CCK basket cell synaptic puncta — implicating NrCAM–Ankyrin B adhesion in the excitatory/inhibitory balance relevant to autism spectrum disorder.",
@@ -131,6 +137,7 @@ export const STAGES: Stage[] = [
   {
     id: "molecule",
     index: 2,
+    cameraZ: 4.6,
     eyebrow: "02 — Structural Biology",
     title: "Structural modeling of the Ankyrin B complex.",
     body: "Employed AlphaFold to model the interactions of the Ankyrin B membrane-binding domain — a solenoid of 24 ANK repeats — with the NrCAM cytoplasmic FIGQY motif and with β2-spectrin. Validated the predicted interfaces by site-directed mutagenesis and co-immunoprecipitation, and related autism-linked missense mutations in Ankyrin B to disrupted binding and impaired Semaphorin 3F-induced spine pruning.",
@@ -138,6 +145,7 @@ export const STAGES: Stage[] = [
   {
     id: "materials",
     index: 3,
+    cameraZ: 10,
     eyebrow: "03 — Materials Science",
     title: "Chiral block copolymer self-assembly.",
     body: "In the Wiesner Group at Cornell, studying homochiral evolution in the self-assembly of block copolymers and the use of chiral block copolymer phases to engineer mesostructured quantum materials — working at the interface of polymer science and solid-state chemistry.",
@@ -145,15 +153,21 @@ export const STAGES: Stage[] = [
   {
     id: "about",
     index: 4,
+    cameraZ: 13.5,
     eyebrow: "About",
     title: "Erik Oldre",
     body: BIO.lead,
   },
 ];
 
+/** Stage index lookup by id, so 3D components reference a stage instead of a bare integer. */
+export const STAGE_INDEX: Record<StageId, number> = Object.fromEntries(
+  STAGES.map((s) => [s.id, s.index]),
+) as Record<StageId, number>;
+
 /** Fluorophore legend rendered on the synapse stage. */
 export const CHANNEL_LEGEND = [
-  { label: "MATH2⁺ soma", color: "#3B82F6", note: "pyramidal neuron" },
-  { label: "VGLUT3⁺ puncta", color: "#5EE9F0", note: "CCK-basket synapse" },
-  { label: "EGFP / VGAT", color: "#34D399", note: "reporter channel" },
+  { label: "MATH2⁺ soma", color: PALETTE.soma, note: "pyramidal neuron" },
+  { label: "VGLUT3⁺ puncta", color: PALETTE.puncta, note: "CCK-basket synapse" },
+  { label: "EGFP / VGAT", color: PALETTE.gfp, note: "reporter channel" },
 ] as const;

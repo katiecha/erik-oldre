@@ -1,18 +1,22 @@
 import type { ReactNode } from "react";
+import { PALETTE } from "@/components/neuron/palette";
 
 export function SectionHeading({
   eyebrow,
   title,
-  accent = "#34D399",
+  accent = PALETTE.gfp,
+  center = false,
   children,
 }: {
   eyebrow: string;
   title: string;
   accent?: string;
+  /** Center the heading (and its children) instead of the default left alignment. */
+  center?: boolean;
   children?: ReactNode;
 }) {
   return (
-    <div className="max-w-xl">
+    <div className={center ? "mx-auto max-w-xl text-center" : "max-w-xl"}>
       <p
         className="font-mono text-xs uppercase tracking-[0.35em]"
         style={{ color: accent }}

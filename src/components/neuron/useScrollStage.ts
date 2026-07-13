@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { STAGES } from "@/lib/content";
 
 /**
  * A module-level scroll store. The DOM layer writes normalized scroll progress
@@ -15,7 +16,7 @@ export const scrollStore = {
   pointerY: 0,
 };
 
-export const STAGE_COUNT = 5;
+export const STAGE_COUNT = STAGES.length;
 
 /** Center of each stage along the 0→1 scroll axis: 0, .25, .5, .75, 1. */
 export function stageCenter(index: number): number {

@@ -3,8 +3,9 @@
 import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { STAGE_INDEX } from "@/lib/content";
 import { PALETTE, COLORS } from "./palette";
-import { scrollStore, stageWeight } from "./useScrollStage";
+import { applyStageVisibility, GLOW_MATERIAL_PROPS, useRunOnce } from "./sceneUtils";
 
 const REPEATS = 24; // AnkB membrane-binding domain: 24 ANK repeats
 
@@ -72,29 +73,28 @@ export function ProteinSolenoid() {
   const nrcamMat = useRef<THREE.MeshBasicMaterial>(null);
   const pocketMat = useRef<THREE.MeshBasicMaterial>(null);
   const dummy = useMemo(() => new THREE.Object3D(), []);
-  const applied = useRef(false);
+  const runOnce = useRunOnce();
   const t = useRef(0);
 
   useFrame((_, delta) => {
     t.current += delta;
     const g = group.current;
-    if (!g || !mesh.current) return;
+    const m = mesh.current;
+    if (!g || !m) return;
 
-    if (!applied.current) {
+    runOnce(() => {
       for (let i = 0; i < REPEATS; i++) {
         dummy.position.copy(rungs[i].pos);
         dummy.quaternion.copy(rungs[i].quat);
         dummy.scale.set(1, 0.5, 1);
         dummy.updateMatrix();
-        mesh.current.setMatrixAt(i, dummy.matrix);
+        m.setMatrixAt(i, dummy.matrix);
       }
-      mesh.current.instanceMatrix.needsUpdate = true;
-      applied.current = true;
-    }
+      m.instanceMatrix.needsUpdate = true;
+    });
 
-    const w = stageWeight(scrollStore.progress, 2);
-    g.visible = w > 0.01;
-    if (!g.visible) return;
+    const w = applyStageVisibility(g, STAGE_INDEX.molecule);
+    if (w === null) return;
 
     g.rotation.y = t.current * 0.18;
 
@@ -109,15 +109,7 @@ export function ProteinSolenoid() {
     <group ref={group}>
       {/* ANK solenoid backbone */}
       <mesh geometry={backbone}>
-        <meshBasicMaterial
-          ref={backboneMat}
-          color={PALETTE.soma}
-          transparent
-          opacity={0}
-          toneMapped={false}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
+        <meshBasicMaterial ref={backboneMat} color={PALETTE.soma} {...GLOW_MATERIAL_PROPS} />
       </mesh>
 
       {/* 24 ANK-repeat rungs */}
@@ -127,42 +119,18 @@ export function ProteinSolenoid() {
         frustumCulled={false}
       >
         <boxGeometry args={[0.5, 0.7, 0.16]} />
-        <meshBasicMaterial
-          ref={rungMat}
-          color={PALETTE.gfp}
-          transparent
-          opacity={0}
-          toneMapped={false}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
+        <meshBasicMaterial ref={rungMat} color={PALETTE.gfp} {...GLOW_MATERIAL_PROPS} />
       </instancedMesh>
 
       {/* NrCAM FIGQY strand */}
       <mesh geometry={nrcam}>
-        <meshBasicMaterial
-          ref={nrcamMat}
-          color={PALETTE.puncta}
-          transparent
-          opacity={0}
-          toneMapped={false}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
+        <meshBasicMaterial ref={nrcamMat} color={PALETTE.puncta} {...GLOW_MATERIAL_PROPS} />
       </mesh>
 
       {/* Binding pocket highlight */}
       <mesh position={dock.toArray()}>
         <sphereGeometry args={[0.22, 16, 16]} />
-        <meshBasicMaterial
-          ref={pocketMat}
-          color={COLORS.farRed}
-          transparent
-          opacity={0}
-          toneMapped={false}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-        />
+        <meshBasicMaterial ref={pocketMat} color={COLORS.farRed} {...GLOW_MATERIAL_PROPS} />
       </mesh>
     </group>
   );

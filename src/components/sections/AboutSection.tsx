@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PROFILE, BIO, RESEARCH_HISTORY, STAGES } from "@/lib/content";
+import { PALETTE } from "@/components/neuron/palette";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -36,7 +37,7 @@ export function AboutSection() {
             <SectionHeading
               eyebrow={about.eyebrow}
               title={about.title}
-              accent="#3B82F6"
+              accent={PALETTE.soma}
             />
           </Reveal>
 
@@ -49,23 +50,23 @@ export function AboutSection() {
           </Reveal>
 
           <Reveal delay={0.1} className="mt-12">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/45">
               Research history
             </p>
             <ul className="mt-6 space-y-6 border-l border-white/10 pl-6">
               {RESEARCH_HISTORY.map((r) => (
                 <li key={r.lab} className="relative">
-                  <span className="absolute -left-[27px] top-1.5 h-2 w-2 rounded-full bg-[#34D399] shadow-[0_0_10px_#34D399]" />
+                  <span className="absolute -left-[27px] top-1.5 h-2 w-2 rounded-full bg-gfp shadow-[0_0_10px_var(--color-gfp)]" />
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4">
                     <h3 className="font-serif text-lg text-white">
                       {r.lab}
-                      <span className="text-white/50"> · {r.institution}</span>
+                      <span className="text-white/55"> · {r.institution}</span>
                     </h3>
-                    <span className="font-mono text-xs text-white/40">
+                    <span className="font-mono text-xs text-white/45">
                       {r.period}
                     </span>
                   </div>
-                  <p className="mt-1.5 text-sm leading-relaxed text-white/60">
+                  <p className="mt-1.5 text-sm leading-relaxed text-white/55">
                     {r.summary}
                   </p>
                 </li>

@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
+/* Mirrors src/components/neuron/palette.ts — keep the two in sync. */
 @theme inline {
   --color-bg: #060a0f;
   --color-soma: #3b82f6;
   --color-puncta: #5ee9f0;
   --color-gfp: #34d399;
-  --color-teal: #2dd4bf;
+  --color-far-red: #2dd4bf;
+  --color-td-tomato: #1fb6a6;
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
