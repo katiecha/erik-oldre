@@ -1,7 +1,9 @@
 # Erik Oldre — Personal Site
 
+**🔗 Live site: https://katiecha.github.io/erik-oldre/**
+
 A single-page, immersive portfolio for **Erik Oldre**, NSF Graduate Research Fellow
-and Ph.D. researcher in Materials Science & Engineering at Cornell (Wiesner Group).
+and Ph.D. student in Materials Science & Engineering at Cornell (Wiesner Group).
 
 The site *artfully depicts neurons*, grounded in Erik's real science. A single WebGL
 canvas plays a cinematic scroll journey through scales:
