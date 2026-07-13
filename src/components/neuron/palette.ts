@@ -1,23 +1,23 @@
 import * as THREE from "three";
 
 /**
- * A restrained, cool palette — blues, greens, and teals only. No warm hues.
- * The keys keep their microscopy-channel names, but every value sits in the
- * blue→green range for a professional, scientific read.
+ * A monochrome palette — black, white, and shades of grey only. The keys
+ * keep their microscopy-channel names, but every value is neutral grayscale
+ * for a stark, minimal read.
  */
 export const PALETTE = {
-  /** deep blue-black imaging field */
-  bg: "#060A0F",
-  /** MATH2+ pyramidal soma (blue) */
-  soma: "#3B82F6",
-  /** VGLUT3+ CCK-basket synaptic puncta (cyan) */
-  puncta: "#5EE9F0",
-  /** EGFP / VGAT reporter (green) */
-  gfp: "#34D399",
-  /** structural / accent (teal) */
-  farRed: "#2DD4BF",
-  /** secondary accent (green-teal) */
-  tdTomato: "#1FB6A6",
+  /** near-black imaging field */
+  bg: "#050505",
+  /** MATH2+ pyramidal soma (brightest) */
+  soma: "#F2F2F2",
+  /** VGLUT3+ CCK-basket synaptic puncta */
+  puncta: "#BFBFBF",
+  /** EGFP / VGAT reporter (primary UI accent) */
+  gfp: "#DCDCDC",
+  /** structural / accent */
+  farRed: "#8C8C8C",
+  /** secondary accent */
+  tdTomato: "#A6A6A6",
 } as const;
 
 export type PaletteKey = keyof typeof PALETTE;

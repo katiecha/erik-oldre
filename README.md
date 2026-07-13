@@ -38,11 +38,19 @@ canvas plays a cinematic scroll journey through scales:
 
 ```bash
 pnpm install
-pnpm dev      # http://localhost:3000
+pnpm dev      # auto-picks a free port (prints the URL), stays up, Ctrl+C stops cleanly
 pnpm build
 ```
 
-Deploy target: **Vercel**.
+`pnpm dev` (or `npm run dev`) runs `scripts/dev.mjs`, which:
+
+- **auto-selects a free port** so it never collides with other things you're running (override the starting point with `PORT=4000 pnpm dev`);
+- **keeps the preview up** — restarts the dev server if it crashes;
+- **shuts down cleanly** on Ctrl+C, killing the whole process tree and freeing the port (no orphaned node processes).
+
+Use `pnpm dev:next` for the plain `next dev` if you ever want it.
+
+Deploy target: **GitHub Pages** (auto-deploys from `.github/workflows/deploy.yml`).
 
 ## TODO (confirm with Erik)
 

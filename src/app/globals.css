@@ -2,12 +2,12 @@
 
 /* Mirrors src/components/neuron/palette.ts — keep the two in sync. */
 @theme inline {
-  --color-bg: #060a0f;
-  --color-soma: #3b82f6;
-  --color-puncta: #5ee9f0;
-  --color-gfp: #34d399;
-  --color-far-red: #2dd4bf;
-  --color-td-tomato: #1fb6a6;
+  --color-bg: #050505;
+  --color-soma: #f2f2f2;
+  --color-puncta: #bfbfbf;
+  --color-gfp: #dcdcdc;
+  --color-far-red: #8c8c8c;
+  --color-td-tomato: #a6a6a6;
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
@@ -16,7 +16,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #060a0f;
+  background: #050505;
 }
 
 body {
@@ -44,7 +44,7 @@ body {
 .field-grain {
   background-image: radial-gradient(
     circle at 50% 40%,
-    rgba(120, 200, 255, 0.04),
+    rgba(255, 255, 255, 0.04),
     transparent 60%
   );
 }

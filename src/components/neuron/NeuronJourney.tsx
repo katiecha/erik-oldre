@@ -19,8 +19,8 @@ const CAMERA_START = { position: [0, 0, 15] as [number, number, number], fov: 50
 const FOG_NEAR = 12;
 const FOG_FAR = 30;
 const AMBIENT_LIGHT_INTENSITY = 0.25;
-/** Cool rim light — not part of the microscopy palette, so it's a standalone constant. */
-const KEY_LIGHT_COLOR = "#88aaff";
+/** Neutral rim light — not part of the microscopy palette, so it's a standalone constant. */
+const KEY_LIGHT_COLOR = "#f0f0f0";
 const KEY_LIGHT_POSITION: [number, number, number] = [6, 8, 10];
 const KEY_LIGHT_INTENSITY = 40;
 const FILL_LIGHT_POSITION: [number, number, number] = [-8, -4, 6];
@@ -83,7 +83,7 @@ function StaticField() {
       className="field-grain pointer-events-none fixed inset-0 z-0"
       style={{
         background:
-          "radial-gradient(ellipse at 30% 25%, rgba(59,130,246,0.16), transparent 45%), radial-gradient(ellipse at 72% 60%, rgba(45,212,191,0.12), transparent 45%), radial-gradient(ellipse at 50% 90%, rgba(52,211,153,0.12), transparent 50%), #060A0F",
+          "radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.08), transparent 45%), radial-gradient(ellipse at 72% 60%, rgba(255,255,255,0.05), transparent 45%), radial-gradient(ellipse at 50% 90%, rgba(255,255,255,0.05), transparent 50%), #050505",
       }}
     />
   );

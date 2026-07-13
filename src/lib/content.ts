@@ -26,11 +26,10 @@ export const PROFILE = {
 } as const;
 
 export const BIO = {
-  lead: "NSF Graduate Research Fellow and first-year Ph.D. student in Materials Science & Engineering at Cornell University.",
+  lead: "NSF Graduate Research Fellow, Materials Science & Engineering, Cornell University.",
   paragraphs: [
-    "Erik Oldre is an NSF Graduate Research Fellow and first-year Ph.D. student in Materials Science & Engineering at Cornell University, where he works in the Wiesner Group. His research studies homochiral evolution in the self-assembly of block copolymers and the use of chiral block copolymer phases to engineer mesostructured quantum materials.",
-    "He earned his B.S. in Chemistry from the University of North Carolina at Chapel Hill, graduating with Highest Distinction and as a member of Phi Beta Kappa.",
-    "His prior research spans neuroscience and energy materials — from the molecular basis of synaptic cell adhesion to phase-transition behavior in fluoride-ion battery anodes — connected by an interest in how structure and self-organization govern function.",
+    "Ph.D. student in the Wiesner Group at Cornell. Studying homochiral block copolymer self-assembly toward mesostructured quantum materials.",
+    "B.S. Chemistry, UNC Chapel Hill — Highest Distinction, Phi Beta Kappa. Prior work in synaptic cell adhesion and fluoride-ion battery materials.",
   ],
 } as const;
 
@@ -47,21 +46,21 @@ export const RESEARCH_HISTORY: ResearchEntry[] = [
     institution: "Cornell University",
     period: "2025 — Present",
     summary:
-      "Studying homochiral evolution in the self-assembly of block copolymers and the use of chiral block copolymer phases to engineer mesostructured quantum materials.",
+      "Studying homochiral block copolymer self-assembly; chiral phases for mesostructured quantum materials.",
   },
   {
     lab: "Maness Lab",
     institution: "UNC School of Medicine",
     period: "2022 — 2025",
     summary:
-      "Investigated the synaptic proteins NrCAM and Ankyrin B and their role in autism spectrum disorder (ASD) and spine/synaptic pruning. Led experimentation of mouse NrCAM- and Ankyrin B-null models, employing immunofluorescence staining with confocal and STED microscopy to quantify changes in interneuron connectivity, and utilized AlphaFold and molecular dynamics to model protein interactions.",
+      "Investigated NrCAM and Ankyrin B in synaptic pruning and ASD; mouse knockouts, confocal/STED imaging, AlphaFold modeling.",
   },
   {
     lab: "Warren Lab",
     institution: "UNC Chapel Hill",
     period: "2024 — 2025",
     summary:
-      "Researched the thermochemical and kinetic properties of the fluoride-ion battery (FIB) anode material yttrium carbide (Y₂C). Characterized fluorination-induced structural transformations by X-ray crystallography, and simulated fluoride behavior with a machine-learning-trained interatomic potential for molecular dynamics.",
+      "Researched fluorination of the Y₂C fluoride-ion battery anode; X-ray crystallography and ML molecular dynamics.",
   },
 ];
 
@@ -123,7 +122,7 @@ export const STAGES: Stage[] = [
     index: 0,
     cameraZ: 15,
     eyebrow: "Erik Oldre",
-    title: "Self-assembly and structure, across scales.",
+    title: "Self-assembly and structure, across scales",
     body: "NSF Graduate Research Fellow · Materials Science & Engineering, Cornell University.",
   },
   {
@@ -131,24 +130,24 @@ export const STAGES: Stage[] = [
     index: 1,
     cameraZ: 7,
     eyebrow: "01 — Neuroscience",
-    title: "Cell adhesion at the perisomatic synapse.",
-    body: "Investigated the cell adhesion molecule NrCAM and the scaffold protein Ankyrin B in the regulation of perisomatic synapses formed by cholecystokinin (CCK) basket interneurons onto pyramidal neurons of the medial prefrontal cortex. Using immunofluorescence with confocal microscopy in NrCAM- and Ankyrin B-null mouse models, quantified a selective reduction in CCK basket cell synaptic puncta — implicating NrCAM–Ankyrin B adhesion in the excitatory/inhibitory balance relevant to autism spectrum disorder.",
+    title: "Perisomatic synaptic adhesion",
+    body: "NrCAM and Ankyrin B build perisomatic synapses from CCK basket interneurons onto pyramidal neurons.",
   },
   {
     id: "molecule",
     index: 2,
     cameraZ: 4.6,
     eyebrow: "02 — Structural Biology",
-    title: "Structural modeling of the Ankyrin B complex.",
-    body: "Employed AlphaFold to model the interactions of the Ankyrin B membrane-binding domain — a solenoid of 24 ANK repeats — with the NrCAM cytoplasmic FIGQY motif and with β2-spectrin. Validated the predicted interfaces by site-directed mutagenesis and co-immunoprecipitation, and related autism-linked missense mutations in Ankyrin B to disrupted binding and impaired Semaphorin 3F-induced spine pruning.",
+    title: "The Ankyrin B complex",
+    body: "AlphaFold modeling of the Ankyrin B–NrCAM–β2-spectrin interface, validated by co-immunoprecipitation.",
   },
   {
     id: "materials",
     index: 3,
     cameraZ: 10,
     eyebrow: "03 — Materials Science",
-    title: "Chiral block copolymer self-assembly.",
-    body: "In the Wiesner Group at Cornell, studying homochiral evolution in the self-assembly of block copolymers and the use of chiral block copolymer phases to engineer mesostructured quantum materials — working at the interface of polymer science and solid-state chemistry.",
+    title: "Chiral block copolymer self-assembly",
+    body: "Homochiral evolution toward mesostructured quantum materials.",
   },
   {
     id: "about",

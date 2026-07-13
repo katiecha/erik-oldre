@@ -28,7 +28,7 @@ export default function Home() {
             <ChannelLegend />
             <PaperLink
               href={PUBLICATIONS[0].url}
-              label="Read the paper — Curr. Res. Neurobiology"
+              label="Curr. Res. Neurobiology"
               accent={PALETTE.gfp}
             />
           </div>
@@ -38,7 +38,7 @@ export default function Home() {
         <NarrativeSection stage={STAGES[2]} accent={PALETTE.puncta} side="right">
           <PaperLink
             href={PUBLICATIONS[1].url}
-            label="Read the paper — J. Biological Chemistry"
+            label="J. Biological Chemistry"
             accent={PALETTE.puncta}
           />
         </NarrativeSection>
@@ -52,7 +52,7 @@ export default function Home() {
 
         {/* 04 — Scientist + publications + contact.
             A scrim calms the field so the long-form reading content stays legible. */}
-        <div className="relative bg-[#060A0F]/85 backdrop-blur-[3px]">
+        <div className="relative bg-[#050505]/85 backdrop-blur-[3px]">
           <AboutSection />
           <PublicationsSection />
           <ContactSection />
