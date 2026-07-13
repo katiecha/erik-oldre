@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #060a0f;
+  --color-soma: #3b82f6;
+  --color-puncta: #5ee9f0;
+  --color-gfp: #34d399;
+  --color-teal: #2dd4bf;
+
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #060a0f;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+/* Fine-grained scrollbar for the immersive dark field */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #04040a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a2e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a44;
+}
+
+/* A faint microscopy-style grid / vignette helper */
+.field-grain {
+  background-image: radial-gradient(
+    circle at 50% 40%,
+    rgba(120, 200, 255, 0.04),
+    transparent 60%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
