@@ -1,23 +1,23 @@
 import * as THREE from "three";
 
 /**
- * A monochrome palette — black, white, and shades of grey only. The keys
- * keep their microscopy-channel names, but every value is neutral grayscale
- * for a stark, minimal read.
+ * A spectral-function palette — a deep navy field with a "hot" colormap
+ * (cyan → green → yellow → orange → red), echoing the momentum-space spectral
+ * plots of quantum materials (Erik's field). Marks glow additively on the navy.
  */
 export const PALETTE = {
-  /** near-black imaging field */
-  bg: "#050505",
-  /** MATH2+ pyramidal soma (brightest) */
-  soma: "#F2F2F2",
-  /** VGLUT3+ CCK-basket synaptic puncta */
-  puncta: "#BFBFBF",
-  /** EGFP / VGAT reporter (primary UI accent) */
-  gfp: "#DCDCDC",
-  /** structural / accent */
-  farRed: "#8C8C8C",
-  /** secondary accent */
-  tdTomato: "#A6A6A6",
+  /** deep navy field */
+  bg: "#0A1240",
+  /** primary structure — cyan */
+  soma: "#2CD8F5",
+  /** hot points / synaptic puncta — red */
+  puncta: "#FF3131",
+  /** bright contour / primary UI accent — yellow */
+  gfp: "#FFD21E",
+  /** hot region — orange */
+  farRed: "#FF7A1A",
+  /** cool accent — spectral green */
+  tdTomato: "#39D98A",
 } as const;
 
 export type PaletteKey = keyof typeof PALETTE;

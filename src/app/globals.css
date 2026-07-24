@@ -2,12 +2,12 @@
 
 /* Mirrors src/components/neuron/palette.ts — keep the two in sync. */
 @theme inline {
-  --color-bg: #050505;
-  --color-soma: #f2f2f2;
-  --color-puncta: #bfbfbf;
-  --color-gfp: #dcdcdc;
-  --color-far-red: #8c8c8c;
-  --color-td-tomato: #a6a6a6;
+  --color-bg: #0a1240;
+  --color-soma: #2cd8f5;
+  --color-puncta: #ff3131;
+  --color-gfp: #ffd21e;
+  --color-far-red: #ff7a1a;
+  --color-td-tomato: #39d98a;
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
@@ -16,7 +16,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #050505;
+  background: #0a1240;
 }
 
 body {
@@ -25,26 +25,26 @@ body {
   overscroll-behavior: none;
 }
 
-/* Fine-grained scrollbar for the immersive dark field */
+/* Scrollbar tuned to the navy field */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #04040a;
+  background: #0a1240;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1a1a2e;
+  background: #1c2a66;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a2a44;
+  background: #2a3c88;
 }
 
-/* A faint microscopy-style grid / vignette helper */
+/* A faint spectral-field glow helper */
 .field-grain {
   background-image: radial-gradient(
     circle at 50% 40%,
-    rgba(255, 255, 255, 0.04),
+    rgba(44, 216, 245, 0.06),
     transparent 60%
   );
 }

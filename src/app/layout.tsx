@@ -66,7 +66,7 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[#050505] text-white">{children}</body>
+      <body className="min-h-full bg-[#0A1240] text-white">{children}</body>
     </html>
   );
 }

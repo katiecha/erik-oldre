@@ -52,7 +52,7 @@ export default function Home() {
 
         {/* 04 — Scientist + publications + contact.
             A scrim calms the field so the long-form reading content stays legible. */}
-        <div className="relative bg-[#050505]/85 backdrop-blur-[3px]">
+        <div className="relative bg-[#0A1240]/85 backdrop-blur-[3px]">
           <AboutSection />
           <PublicationsSection />
           <ContactSection />

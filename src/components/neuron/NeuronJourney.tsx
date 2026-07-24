@@ -7,6 +7,7 @@ import { PALETTE } from "./palette";
 import { prefersReducedMotion } from "./useScrollStage";
 import { CameraRig } from "./CameraRig";
 import { Effects } from "./Effects";
+import { SpectralField } from "./SpectralField";
 import { NeuronNetwork } from "./NeuronNetwork";
 import { PyramidalNeuron } from "./PyramidalNeuron";
 import { ProteinSolenoid } from "./ProteinSolenoid";
@@ -59,6 +60,7 @@ export function NeuronJourney() {
       >
         <color attach="background" args={[PALETTE.bg]} />
         <fog attach="fog" args={[PALETTE.bg, FOG_NEAR, FOG_FAR]} />
+        <SpectralField />
         <ambientLight intensity={AMBIENT_LIGHT_INTENSITY} />
         <pointLight position={KEY_LIGHT_POSITION} intensity={KEY_LIGHT_INTENSITY} color={KEY_LIGHT_COLOR} />
         <pointLight position={FILL_LIGHT_POSITION} intensity={FILL_LIGHT_INTENSITY} color={PALETTE.gfp} />
@@ -83,7 +85,7 @@ function StaticField() {
       className="field-grain pointer-events-none fixed inset-0 z-0"
       style={{
         background:
-          "radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.08), transparent 45%), radial-gradient(ellipse at 72% 60%, rgba(255,255,255,0.05), transparent 45%), radial-gradient(ellipse at 50% 90%, rgba(255,255,255,0.05), transparent 50%), #050505",
+          "radial-gradient(ellipse at 30% 25%, rgba(44,216,245,0.14), transparent 45%), radial-gradient(ellipse at 72% 60%, rgba(255,122,26,0.12), transparent 45%), radial-gradient(ellipse at 50% 90%, rgba(255,49,49,0.10), transparent 50%), #0A1240",
       }}
     />
   );

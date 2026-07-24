@@ -3,11 +3,11 @@
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 
 const MULTISAMPLING = 2;
-const BLOOM_LUMINANCE_THRESHOLD = 0.45;
-const BLOOM_LUMINANCE_SMOOTHING = 0.85;
-const BLOOM_INTENSITY = 0.55;
-const VIGNETTE_OFFSET = 0.25;
-const VIGNETTE_DARKNESS = 0.6;
+const BLOOM_LUMINANCE_THRESHOLD = 0.25;
+const BLOOM_LUMINANCE_SMOOTHING = 0.9;
+const BLOOM_INTENSITY = 0.95;
+const VIGNETTE_OFFSET = 0.22;
+const VIGNETTE_DARKNESS = 0.68;
 
 /**
  * Post-processing that gives the scene its fluorescence-microscopy glow.

@@ -35,10 +35,6 @@ export function ContactSection() {
             </a>
           ))}
         </Reveal>
-
-        <p className="mt-16 font-mono text-[11px] uppercase tracking-[0.3em] text-white/25">
-          {PROFILE.fullName} · {PROFILE.affiliation}
-        </p>
       </div>
     </section>
   );

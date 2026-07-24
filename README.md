@@ -38,13 +38,13 @@ canvas plays a cinematic scroll journey through scales:
 
 ```bash
 pnpm install
-pnpm dev      # auto-picks a free port (prints the URL), stays up, Ctrl+C stops cleanly
+pnpm dev      # always http://localhost:3002 — stays up, Ctrl+C stops cleanly
 pnpm build
 ```
 
 `pnpm dev` (or `npm run dev`) runs `scripts/dev.mjs`, which:
 
-- **auto-selects a free port** so it never collides with other things you're running (override the starting point with `PORT=4000 pnpm dev`);
+- **always uses port 3002** so the local URL never changes (override with `PORT=3003 pnpm dev`). If a stale copy of *this* project is still holding 3002, it reclaims the port; if another project has it, it tells you instead of stomping on it;
 - **keeps the preview up** — restarts the dev server if it crashes;
 - **shuts down cleanly** on Ctrl+C, killing the whole process tree and freeing the port (no orphaned node processes).
 

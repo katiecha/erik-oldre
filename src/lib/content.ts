@@ -49,18 +49,18 @@ export const RESEARCH_HISTORY: ResearchEntry[] = [
       "Studying homochiral block copolymer self-assembly; chiral phases for mesostructured quantum materials.",
   },
   {
-    lab: "Maness Lab",
-    institution: "UNC School of Medicine",
-    period: "2022 — 2025",
-    summary:
-      "Investigated NrCAM and Ankyrin B in synaptic pruning and ASD; mouse knockouts, confocal/STED imaging, AlphaFold modeling.",
-  },
-  {
     lab: "Warren Lab",
     institution: "UNC Chapel Hill",
     period: "2024 — 2025",
     summary:
       "Researched fluorination of the Y₂C fluoride-ion battery anode; X-ray crystallography and ML molecular dynamics.",
+  },
+  {
+    lab: "Maness Lab",
+    institution: "UNC School of Medicine",
+    period: "2022 — 2025",
+    summary:
+      "Investigated NrCAM and Ankyrin B in synaptic pruning and ASD; mouse knockouts, confocal/STED imaging, AlphaFold modeling.",
   },
 ];
 
