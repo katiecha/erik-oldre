@@ -31,13 +31,28 @@ const currentFragmentShader = /* glsl */ `
   uniform float uTime;
   uniform float uOpacity;
   uniform float uPhase;
+  // spectral ramp (cyan → green → yellow → orange → red) for prismatic dispersion
+  uniform vec3 uC0, uC1, uC2, uC3, uC4;
+
+  vec3 spectral(float s) {
+    float x = clamp(s, 0.0, 1.0) * 4.0;
+    vec3 c = uC0;
+    c = mix(c, uC1, smoothstep(0.0, 1.0, x));
+    c = mix(c, uC2, smoothstep(1.0, 2.0, x));
+    c = mix(c, uC3, smoothstep(2.0, 3.0, x));
+    c = mix(c, uC4, smoothstep(3.0, 4.0, x));
+    return c;
+  }
 
   void main() {
     float stream = sin((vUv.x * 7.0) - uTime * 1.5 + uPhase);
     stream = smoothstep(-0.35, 1.0, stream);
     float breath = 0.62 + 0.38 * sin(uTime * 0.45 + uPhase);
     float edge = smoothstep(0.0, 0.22, vUv.y) * smoothstep(1.0, 0.78, vUv.y);
-    vec3 color = mix(uColor * 0.45, uColor, stream);
+    // light slowly disperses along the ribbon like a prism
+    float s = fract(vUv.x * 0.6 + uTime * 0.05 + uPhase * 0.12);
+    vec3 spec = mix(spectral(s), uColor, 0.28);
+    vec3 color = mix(spec * 0.5, spec, stream);
     gl_FragColor = vec4(color, uOpacity * edge * breath * (0.45 + stream * 0.55));
   }
 `;
@@ -126,6 +141,11 @@ export function LightCurrents({ quality }: { quality: Quality }) {
               uTime: { value: 0 },
               uOpacity: { value: 0 },
               uPhase: { value: current.phase },
+              uC0: { value: COLORS.soma },
+              uC1: { value: COLORS.tdTomato },
+              uC2: { value: COLORS.gfp },
+              uC3: { value: COLORS.farRed },
+              uC4: { value: COLORS.puncta },
             }}
             transparent
             toneMapped={false}

@@ -68,7 +68,7 @@ const fragmentShader = /* glsl */ `
     uv.x *= uAspect;
     float t = uTime * 0.04;
 
-    vec2 p = uv * 1.28;
+    vec2 p = uv * 1.12;
     // two-step domain warp for smooth, organic flow
     vec2 q = vec2(fbm(p + t), fbm(p + vec2(3.1, 1.7) - t));
     vec2 r = vec2(
