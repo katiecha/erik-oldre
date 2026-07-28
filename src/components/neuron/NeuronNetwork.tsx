@@ -83,7 +83,7 @@ function buildNetwork(count: number): NetworkData {
  * stage. Instanced for a single draw call.
  */
 export function NeuronNetwork({ quality }: { quality: Quality }) {
-  const count = quality === "high" ? 64 : 30;
+  const count = quality === "high" ? 44 : 24;
   const data = useMemo(() => buildNetwork(count), [count]);
 
   const group = useRef<THREE.Group>(null);
@@ -125,8 +125,8 @@ export function NeuronNetwork({ quality }: { quality: Quality }) {
     g.rotation.y += delta * 0.03;
     g.rotation.x = Math.sin(t.current * 0.05) * 0.06;
 
-    if (nodeMat.current) nodeMat.current.opacity = w;
-    if (lineMat.current) lineMat.current.opacity = w * 0.28;
+    if (nodeMat.current) nodeMat.current.opacity = w * 0.26;
+    if (lineMat.current) lineMat.current.opacity = w * 0.46;
   });
 
   return (

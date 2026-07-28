@@ -47,32 +47,9 @@ function basketGeometry() {
  * (cyan) glowing at perisomatic contacts. Faithful to Erik's confocal work.
  */
 export function PyramidalNeuron({ quality }: { quality: Quality }) {
-  const somaMat = useMemo(
-    () =>
-      new THREE.MeshBasicMaterial({
-        color: new THREE.Color(PALETTE.soma),
-        ...GLOW_MATERIAL_PROPS,
-      }),
-    [],
-  );
-
-  const dendriteMat = useMemo(
-    () =>
-      new THREE.MeshBasicMaterial({
-        color: new THREE.Color(PALETTE.soma),
-        ...GLOW_MATERIAL_PROPS,
-      }),
-    [],
-  );
-
-  const basketMat = useMemo(
-    () =>
-      new THREE.MeshBasicMaterial({
-        color: new THREE.Color(PALETTE.gfp),
-        ...GLOW_MATERIAL_PROPS,
-      }),
-    [],
-  );
+  const somaMat = useRef<THREE.MeshBasicMaterial>(null);
+  const dendriteMats = useRef<THREE.MeshBasicMaterial[]>([]);
+  const basketMat = useRef<THREE.MeshBasicMaterial>(null);
 
   const dendrites = useMemo(() => {
     const geos: THREE.BufferGeometry[] = [];
@@ -108,29 +85,51 @@ export function PyramidalNeuron({ quality }: { quality: Quality }) {
 
     g.rotation.y = Math.sin(t.current * 0.12) * 0.35 + t.current * 0.06;
 
-    somaMat.opacity = w * 0.42;
-    dendriteMat.opacity = w * 0.6;
-    basketMat.opacity = w * 0.85;
+    if (somaMat.current) somaMat.current.opacity = w * 0.36;
+    for (const dendriteMat of dendriteMats.current) {
+      dendriteMat.opacity = w * 0.48;
+    }
+    if (basketMat.current) basketMat.current.opacity = w * 0.68;
   });
 
   return (
     <group ref={group}>
       {/* Soma — pyramidal cell body */}
-      <mesh material={somaMat}>
+      <mesh>
         <coneGeometry args={[0.95, 2.2, 32]} />
+        <meshBasicMaterial
+          ref={somaMat}
+          color={PALETTE.soma}
+          {...GLOW_MATERIAL_PROPS}
+        />
       </mesh>
 
       {/* Dendrites */}
       {dendrites.map((geo, i) => (
-        <mesh key={i} geometry={geo} material={dendriteMat} />
+        <mesh key={i} geometry={geo}>
+          <meshBasicMaterial
+            ref={(material) => {
+              if (material) dendriteMats.current[i] = material;
+              else delete dendriteMats.current[i];
+            }}
+            color={PALETTE.soma}
+            {...GLOW_MATERIAL_PROPS}
+          />
+        </mesh>
       ))}
 
       {/* Basket-cell axon wrapping the soma */}
-      <mesh geometry={basket} material={basketMat} />
+      <mesh geometry={basket}>
+        <meshBasicMaterial
+          ref={basketMat}
+          color={PALETTE.gfp}
+          {...GLOW_MATERIAL_PROPS}
+        />
+      </mesh>
 
       {/* Perisomatic synaptic puncta */}
       <SynapticPuncta
-        count={quality === "high" ? 96 : 44}
+        count={quality === "high" ? 56 : 28}
         radius={[1.05, 1.15, 1.05]}
       />
     </group>

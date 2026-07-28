@@ -10,11 +10,11 @@ export function AboutSection() {
   return (
     <section
       data-stage="about"
-      className="relative flex min-h-[100dvh] items-center px-6 py-28 sm:px-12"
+      className="flow-section relative flex min-h-[100dvh] items-center overflow-hidden px-6 py-28 sm:px-12"
     >
       <div className="mx-auto grid w-full max-w-5xl gap-12 md:grid-cols-[300px_1fr] md:items-start">
         <Reveal className="flex flex-col items-center gap-5 md:sticky md:top-28">
-          <div className="relative h-56 w-56 overflow-hidden rounded-2xl ring-1 ring-white/15">
+          <div className="relative h-56 w-56 overflow-hidden border border-white/15 bg-[#071033]/20">
             <Image
               src="/erik.jpg"
               alt="Erik Oldre"
@@ -32,7 +32,7 @@ export function AboutSection() {
           </div>
         </Reveal>
 
-        <div>
+        <div className="flow-caption">
           <Reveal>
             <SectionHeading
               eyebrow={about.eyebrow}

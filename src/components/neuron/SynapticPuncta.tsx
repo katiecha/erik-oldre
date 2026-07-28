@@ -69,12 +69,12 @@ export function SynapticPuncta({
       const p = puncta[i];
       const pulse = 0.65 + 0.35 * Math.sin(t.current * 2.4 + p.phase);
       dummy.position.copy(p.base);
-      dummy.scale.setScalar(p.size * pulse * (0.4 + 0.6 * w));
+      dummy.scale.setScalar(p.size * pulse * (0.24 + 0.36 * w));
       dummy.updateMatrix();
       mesh.current.setMatrixAt(i, dummy.matrix);
     }
     mesh.current.instanceMatrix.needsUpdate = true;
-    if (mat.current) mat.current.opacity = w;
+    if (mat.current) mat.current.opacity = w * 0.38;
   });
 
   return (

@@ -24,7 +24,7 @@ export function ContactSection() {
               href={l.href}
               target={l.label === "Email" ? undefined : "_blank"}
               rel="noreferrer noopener"
-              className="group flex min-w-[180px] flex-col items-center rounded-xl border border-white/10 bg-white/[0.03] px-6 py-5 transition-colors hover:border-white/25 hover:bg-white/[0.06]"
+              className="group flex min-w-[180px] flex-col items-center border-b border-white/15 px-6 py-5 transition-colors hover:border-gfp/60"
             >
               <span className="font-mono text-[11px] uppercase tracking-widest text-white/45">
                 {l.label}

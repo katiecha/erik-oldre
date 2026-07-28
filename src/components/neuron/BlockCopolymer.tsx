@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { STAGE_INDEX } from "@/lib/content";
 import { COLORS } from "./palette";
-import { applyStageVisibility, GLOW_MATERIAL_PROPS, useRunOnce } from "./sceneUtils";
+import { applyStageVisibility, GLOW_MATERIAL_PROPS } from "./sceneUtils";
 import type { Quality } from "./NeuronJourney";
 
 const BLOCK_COLORS = [
@@ -16,7 +16,7 @@ const BLOCK_COLORS = [
   COLORS.tdTomato,
 ];
 
-type Bead = { pos: THREE.Vector3; color: THREE.Color; scale: number };
+type Strand = { geometry: THREE.TubeGeometry; color: THREE.Color };
 
 /**
  * Stage 03 — the material. Interwoven chiral strands standing in for a
@@ -25,76 +25,75 @@ type Bead = { pos: THREE.Vector3; color: THREE.Color; scale: number };
  * suggest distinct copolymer blocks. Evokes Erik's current Wiesner Group work.
  */
 export function BlockCopolymer({ quality }: { quality: Quality }) {
-  const beadsPerStrand = quality === "high" ? 40 : 22;
-  const strands = 6;
+  const strands = quality === "high" ? 5 : 4;
 
-  const beads = useMemo<Bead[]>(() => {
-    const out: Bead[] = [];
-    const turns = 2.4;
-    const R = 1.6; // radius of the strand bundle
+  const strandGeometries = useMemo<Strand[]>(() => {
+    const out: Strand[] = [];
+    const turns = 2.25;
+    const R = 1.65;
     for (let s = 0; s < strands; s++) {
       const offset = (s / strands) * Math.PI * 2;
-      const color = BLOCK_COLORS[s % BLOCK_COLORS.length];
-      for (let i = 0; i < beadsPerStrand; i++) {
-        const f = i / (beadsPerStrand - 1);
-        const y = THREE.MathUtils.lerp(-2.4, 2.4, f);
-        // Right-handed twist → chirality.
-        const a = f * Math.PI * 2 * turns + offset;
-        // The bundle itself gently precesses, tightening at the waist.
-        const belt = R * (0.75 + 0.25 * Math.sin(f * Math.PI));
-        out.push({
-          pos: new THREE.Vector3(Math.cos(a) * belt, y, Math.sin(a) * belt),
-          color,
-          scale: 0.13 + 0.03 * Math.sin(f * Math.PI),
-        });
+      const pts: THREE.Vector3[] = [];
+      const steps = quality === "high" ? 120 : 84;
+      for (let i = 0; i <= steps; i++) {
+        const f = i / steps;
+        const y = THREE.MathUtils.lerp(-2.7, 2.7, f);
+        const a = f * Math.PI * 2 * turns + offset + Math.sin(f * Math.PI * 5 + offset) * 0.22;
+        const belt = R * (0.66 + 0.34 * Math.sin(f * Math.PI));
+        pts.push(new THREE.Vector3(Math.cos(a) * belt, y, Math.sin(a) * belt));
       }
+      out.push({
+        geometry: new THREE.TubeGeometry(
+          new THREE.CatmullRomCurve3(pts),
+          steps,
+          0.2,
+          10,
+          false,
+        ),
+        color: BLOCK_COLORS[s % BLOCK_COLORS.length],
+      });
     }
     return out;
-  }, [beadsPerStrand, strands]);
+  }, [quality, strands]);
 
   const group = useRef<THREE.Group>(null);
-  const mesh = useRef<THREE.InstancedMesh>(null);
-  const mat = useRef<THREE.MeshBasicMaterial>(null);
-  const dummy = useMemo(() => new THREE.Object3D(), []);
-  const runOnce = useRunOnce();
+  const strandMats = useRef<THREE.MeshBasicMaterial[]>([]);
   const t = useRef(0);
 
   useFrame((_, delta) => {
     t.current += delta;
     const g = group.current;
-    const m = mesh.current;
-    if (!g || !m) return;
-
-    runOnce(() => {
-      for (let i = 0; i < beads.length; i++) {
-        dummy.position.copy(beads[i].pos);
-        dummy.scale.setScalar(beads[i].scale);
-        dummy.updateMatrix();
-        m.setMatrixAt(i, dummy.matrix);
-        m.setColorAt(i, beads[i].color);
-      }
-      m.instanceMatrix.needsUpdate = true;
-      if (m.instanceColor) m.instanceColor.needsUpdate = true;
-    });
+    if (!g) return;
 
     const w = applyStageVisibility(g, STAGE_INDEX.materials);
     if (w === null) return;
 
     g.rotation.y = t.current * 0.22;
     g.rotation.z = Math.sin(t.current * 0.15) * 0.08;
-    if (mat.current) mat.current.opacity = w;
+    for (const strandMat of strandMats.current) {
+      strandMat.opacity = w * 0.5;
+    }
   });
 
   return (
     <group ref={group}>
-      <instancedMesh
-        ref={mesh}
-        args={[undefined, undefined, beads.length]}
-        frustumCulled={false}
-      >
-        <sphereGeometry args={[1, 10, 10]} />
-        <meshBasicMaterial ref={mat} {...GLOW_MATERIAL_PROPS} />
-      </instancedMesh>
+      {strandGeometries.map((strand, index) => (
+        <mesh
+          geometry={strand.geometry}
+          key={`flow-strand-${index}`}
+          rotation={[0, 0, Math.sin(index) * 0.08]}
+        >
+          <meshBasicMaterial
+            ref={(material) => {
+              if (material) strandMats.current[index] = material;
+              else delete strandMats.current[index];
+            }}
+            color={strand.color}
+            {...GLOW_MATERIAL_PROPS}
+          />
+        </mesh>
+      ))}
+
     </group>
   );
 }

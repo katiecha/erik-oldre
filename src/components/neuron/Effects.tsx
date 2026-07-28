@@ -2,10 +2,10 @@
 
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 
-const MULTISAMPLING = 2;
-const BLOOM_LUMINANCE_THRESHOLD = 0.25;
+const MULTISAMPLING = 0;
+const BLOOM_LUMINANCE_THRESHOLD = 0.32;
 const BLOOM_LUMINANCE_SMOOTHING = 0.9;
-const BLOOM_INTENSITY = 0.95;
+const BLOOM_INTENSITY = 0.72;
 const VIGNETTE_OFFSET = 0.22;
 const VIGNETTE_DARKNESS = 0.68;
 

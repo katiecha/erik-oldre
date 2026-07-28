@@ -8,6 +8,7 @@ import { prefersReducedMotion } from "./useScrollStage";
 import { CameraRig } from "./CameraRig";
 import { Effects } from "./Effects";
 import { SpectralField } from "./SpectralField";
+import { LightCurrents } from "./LightCurrents";
 import { NeuronNetwork } from "./NeuronNetwork";
 import { PyramidalNeuron } from "./PyramidalNeuron";
 import { ProteinSolenoid } from "./ProteinSolenoid";
@@ -38,10 +39,14 @@ export function NeuronJourney() {
   const [bloom, setBloom] = useState(true);
 
   useEffect(() => {
-    setAnimate(!prefersReducedMotion());
-    setQuality(window.innerWidth < 768 ? "low" : "high");
-    // Debug: ?nobloom disables post-processing (used to isolate headless issues).
-    setBloom(!new URLSearchParams(window.location.search).has("nobloom"));
+    const raf = requestAnimationFrame(() => {
+      setAnimate(!prefersReducedMotion());
+      setQuality(window.innerWidth < 768 ? "low" : "high");
+      // Debug: ?nobloom disables post-processing (used to isolate headless issues).
+      setBloom(!new URLSearchParams(window.location.search).has("nobloom"));
+    });
+
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   if (!animate) {
@@ -51,7 +56,7 @@ export function NeuronJourney() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0">
       <Canvas
-        dpr={[1, 1.5]}
+        dpr={[1, 1.25]}
         camera={CAMERA_START}
         gl={{ antialias: false, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
@@ -67,6 +72,7 @@ export function NeuronJourney() {
 
         <CameraRig />
 
+        <LightCurrents quality={quality} />
         <NeuronNetwork quality={quality} />
         <PyramidalNeuron quality={quality} />
         <ProteinSolenoid />

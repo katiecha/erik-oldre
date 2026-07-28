@@ -9,14 +9,14 @@ export function PublicationCard({ pub }: { pub: Publication }) {
       href={pub.url}
       target="_blank"
       rel="noreferrer noopener"
-      className="group block rounded-xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-white/25 hover:bg-white/[0.06]"
+      className="group block border-l border-white/15 py-6 pl-6 transition-colors hover:border-gfp/60"
     >
       <div className="flex items-center gap-3">
         <span className="font-mono text-xs uppercase tracking-widest text-gfp">
           {pub.venue}
         </span>
         {pub.firstAuthor && (
-          <span className="rounded-full border border-puncta/40 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-puncta">
+          <span className="border-b border-puncta/45 pb-0.5 font-mono text-[10px] uppercase tracking-wider text-puncta">
             First author
           </span>
         )}

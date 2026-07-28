@@ -50,9 +50,8 @@ export default function Home() {
           </p>
         </NarrativeSection>
 
-        {/* 04 — Scientist + publications + contact.
-            A scrim calms the field so the long-form reading content stays legible. */}
-        <div className="relative bg-[#0A1240]/85 backdrop-blur-[3px]">
+        {/* 04 — Scientist + publications + contact. */}
+        <div className="relative overflow-hidden">
           <AboutSection />
           <PublicationsSection />
           <ContactSection />
