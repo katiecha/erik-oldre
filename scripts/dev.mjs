@@ -138,8 +138,19 @@ async function startServer() {
     child = null;
     if (shuttingDown) return;
 
-    // Unexpected exit → keep the preview alive by restarting, but back off if
-    // it's crash-looping so we don't spin forever on a fatal error.
+    // Killed by an external signal — another dev instance reclaiming this port,
+    // or a manual kill. Concede cleanly instead of restarting and fighting for
+    // the port (which would ping-pong two instances forever).
+    if (signal) {
+      console.log(
+        `\n\x1b[36m⏹ Dev server was stopped externally (${signal}).\x1b[0m ` +
+          `Another instance likely took port ${PORT}. Exiting.\n`,
+      );
+      process.exit(0);
+    }
+
+    // Genuine crash (self-exit with a code) → keep the preview alive by
+    // restarting, but back off if it's crash-looping on a fatal error.
     if (Date.now() - startedAt < 3000) recentRestarts += 1;
     else recentRestarts = 0;
 

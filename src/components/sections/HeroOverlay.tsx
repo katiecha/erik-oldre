@@ -9,7 +9,7 @@ export function HeroOverlay() {
       className="flow-section relative flex min-h-[112dvh] flex-col justify-center overflow-hidden px-6 pb-32 pt-20 sm:px-12"
     >
       <div className="flow-caption relative max-w-4xl">
-        <p className="font-mono text-xs uppercase tracking-[0.36em] text-white/55">
+        <p className="font-mono text-xs uppercase tracking-[0.36em] text-white/78">
           {PROFILE.fellowship}
         </p>
 
@@ -21,18 +21,18 @@ export function HeroOverlay() {
           {hero.title}
         </p>
 
-        <p className="mt-5 max-w-md text-sm leading-relaxed text-white/55">
+        <p className="mt-5 max-w-md text-sm leading-relaxed text-white/78">
           {PROFILE.title}
           <br />
           {PROFILE.affiliation}
         </p>
       </div>
 
-      <div className="pointer-events-none absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/45">
+      <div className="pointer-events-none absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/70">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
           Scroll
         </span>
-        <span className="h-10 w-px animate-pulse bg-gradient-to-b from-white/50 to-transparent" />
+        <span className="h-10 w-px animate-pulse bg-gradient-to-b from-white/70 to-transparent" />
       </div>
     </section>
   );

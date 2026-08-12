@@ -26,7 +26,7 @@ export function AboutSection() {
           </div>
           <div className="text-center">
             <p className="font-serif text-xl text-white">{PROFILE.fullName}</p>
-            <p className="mt-1 font-mono text-[11px] uppercase tracking-widest text-white/45">
+            <p className="mt-1 font-mono text-[11px] uppercase tracking-widest text-white/70">
               {PROFILE.pronouns} · {PROFILE.location}
             </p>
           </div>
@@ -50,7 +50,7 @@ export function AboutSection() {
           </Reveal>
 
           <Reveal delay={0.1} className="mt-12">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/45">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/70">
               Research history
             </p>
             <ul className="mt-6 space-y-6 border-l border-white/10 pl-6">
@@ -60,13 +60,13 @@ export function AboutSection() {
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4">
                     <h3 className="font-serif text-lg text-white">
                       {r.lab}
-                      <span className="text-white/55"> · {r.institution}</span>
+                      <span className="text-white/78"> · {r.institution}</span>
                     </h3>
-                    <span className="font-mono text-xs text-white/45">
+                    <span className="font-mono text-xs text-white/70">
                       {r.period}
                     </span>
                   </div>
-                  <p className="mt-1.5 text-sm leading-relaxed text-white/55">
+                  <p className="mt-1.5 text-sm leading-relaxed text-white/78">
                     {r.summary}
                   </p>
                 </li>

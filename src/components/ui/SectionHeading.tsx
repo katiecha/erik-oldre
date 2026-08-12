@@ -27,7 +27,7 @@ export function SectionHeading({
         {title}
       </h2>
       {children && (
-        <div className="mt-6 text-base leading-relaxed text-white/70">
+        <div className="mt-6 text-base leading-relaxed text-white/85">
           {children}
         </div>
       )}

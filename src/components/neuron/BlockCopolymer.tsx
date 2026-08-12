@@ -70,8 +70,10 @@ export function BlockCopolymer({ quality }: { quality: Quality }) {
 
     g.rotation.y = t.current * 0.22;
     g.rotation.z = Math.sin(t.current * 0.15) * 0.08;
+    // Softened so the copolymer melts into the field rather than reading as a
+    // distinct, identifiable helix.
     for (const strandMat of strandMats.current) {
-      strandMat.opacity = w * 0.5;
+      strandMat.opacity = w * 0.3;
     }
   });
 

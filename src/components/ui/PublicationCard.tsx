@@ -26,16 +26,16 @@ export function PublicationCard({ pub }: { pub: Publication }) {
         {pub.title}
       </h3>
 
-      <p className="mt-3 text-sm leading-relaxed text-white/55">
+      <p className="mt-3 text-sm leading-relaxed text-white/78">
         {parts[0]}
         <span className="text-white/90">{pub.authorHighlight}</span>
         {parts[1]}
       </p>
 
-      <div className="mt-4 flex items-center gap-2 font-mono text-xs text-white/45">
+      <div className="mt-4 flex items-center gap-2 font-mono text-xs text-white/70">
         <span>{pub.detail}</span>
         <span aria-hidden>·</span>
-        <span className="text-white/55 group-hover:text-puncta">
+        <span className="text-white/78 group-hover:text-puncta">
           doi:{pub.doi} ↗
         </span>
       </div>

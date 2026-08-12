@@ -56,11 +56,28 @@ body {
   isolation: isolate;
 }
 
+/* Dense dark halo + soft local scrim so light text stays legible (WCAG) over
+   the bright flow field without a hard panel. */
 .flow-caption {
+  position: relative;
   text-shadow:
-    0 0 22px rgba(10, 18, 64, 0.95),
-    0 0 46px rgba(10, 18, 64, 0.78),
-    0 0 76px rgba(44, 216, 245, 0.28);
+    0 1px 2px rgba(3, 7, 26, 0.98),
+    0 0 10px rgba(3, 7, 26, 0.95),
+    0 0 28px rgba(3, 7, 26, 0.82),
+    0 0 64px rgba(3, 7, 26, 0.6);
+}
+.flow-caption::before {
+  content: "";
+  position: absolute;
+  inset: -14% -12%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(4, 8, 30, 0.74),
+    rgba(4, 8, 30, 0.46) 52%,
+    transparent 76%
+  );
 }
 
 .flow-caption-left {

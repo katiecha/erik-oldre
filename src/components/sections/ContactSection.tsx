@@ -26,7 +26,7 @@ export function ContactSection() {
               rel="noreferrer noopener"
               className="group flex min-w-[180px] flex-col items-center border-b border-white/15 px-6 py-5 transition-colors hover:border-gfp/60"
             >
-              <span className="font-mono text-[11px] uppercase tracking-widest text-white/45">
+              <span className="font-mono text-[11px] uppercase tracking-widest text-white/70">
                 {l.label}
               </span>
               <span className="mt-1.5 text-white group-hover:text-gfp">

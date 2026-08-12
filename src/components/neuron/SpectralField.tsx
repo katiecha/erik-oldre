@@ -46,7 +46,7 @@ const fragmentShader = /* glsl */ `
   float fbm(vec2 p) {
     float v = 0.0;
     float a = 0.5;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 3; i++) {
       v += a * noise(p);
       p *= 2.0;
       a *= 0.5;
@@ -69,22 +69,18 @@ const fragmentShader = /* glsl */ `
     float t = uTime * 0.04;
 
     vec2 p = uv * 1.12;
-    // two-step domain warp for smooth, organic flow
+    // single-step domain warp — cheaper than two steps, still smooth/flowing
     vec2 q = vec2(fbm(p + t), fbm(p + vec2(3.1, 1.7) - t));
-    vec2 r = vec2(
-      fbm(p + 2.0 * q + vec2(1.7, 9.2) + 0.5 * t),
-      fbm(p + 2.0 * q + vec2(8.3, 2.8) - 0.3 * t)
-    );
-    float f = fbm(p + 2.6 * r);
+    float f = fbm(p + 2.4 * q);
 
-    vec3 col = blueField(f) * 0.62;
+    vec3 col = blueField(f) * 0.5;
 
-    vec2 flowUv = uv + (r - 0.5) * 0.42;
+    vec2 flowUv = uv + (q - 0.5) * 0.42;
     float riverA = smoothstep(0.52, 0.0, abs((flowUv.y - 0.54) + 0.2 * sin(flowUv.x * 1.8 + t * 2.2)));
     float riverB = smoothstep(0.44, 0.0, abs((flowUv.y - 0.42) - 0.22 * cos(flowUv.x * 1.55 - t * 1.3)));
     float riverC = smoothstep(0.38, 0.0, abs((flowUv.x - uAspect * 0.48) + 0.16 * sin(flowUv.y * 2.6 + t * 1.6)));
     vec3 coolFlow = mix(cBlue, cCyan, 0.72);
-    col += coolFlow * (riverA * 0.4 + riverB * 0.34 + riverC * 0.24);
+    col += coolFlow * (riverA * 0.28 + riverB * 0.24 + riverC * 0.16);
 
     // Broad spectral response bands, closer to light dispersion than texture.
     float bandA = smoothstep(0.46, 0.0, abs((uv.y - 0.5) + 0.18 * sin(uv.x * 1.9 + t * 1.65)));
@@ -92,10 +88,8 @@ const fragmentShader = /* glsl */ `
     float bandC = smoothstep(0.32, 0.0, abs((uv.y - 0.62) + 0.12 * sin(uv.x * 2.2 - t * 1.1)));
     col = mix(col, cOrange * 0.68 + cRed * 0.16 + cYellow * 0.16, (bandA + bandB + bandC) * 0.09);
 
-    // Soft hot density blooms. Keep these broad so the field reads as flow,
-    // not as contour-map squiggles.
-    float g = fbm(p * 1.05 + 2.4 * r - t * 0.5);
-    float bloom = smoothstep(0.62, 0.92, g) * smoothstep(0.26, 0.86, f);
+    // Soft hot density blooms — reuse the field value (no extra noise fetch).
+    float bloom = smoothstep(0.58, 0.9, f);
     vec3 hot = mix(cYellow, cRed, smoothstep(0.4, 0.9, f));
     hot = mix(hot, cOrange, 0.3);
     col += bloom * hot * 0.12;

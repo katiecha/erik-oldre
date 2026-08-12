@@ -80,11 +80,13 @@ export function ProteinSolenoid() {
     g.rotation.y = t.current * 0.12;
     g.rotation.z = Math.sin(t.current * 0.16) * 0.12;
 
-    if (ribbonMat.current) ribbonMat.current.opacity = w * 0.52;
-    if (backboneMat.current) backboneMat.current.opacity = w * 0.16;
-    if (nrcamMat.current) nrcamMat.current.opacity = w * 0.12;
+    // Kept faint so the protein reads as a suggestion in the field, not a
+    // separate, identifiable object.
+    if (ribbonMat.current) ribbonMat.current.opacity = w * 0.22;
+    if (backboneMat.current) backboneMat.current.opacity = w * 0.09;
+    if (nrcamMat.current) nrcamMat.current.opacity = w * 0.06;
     if (pocketMat.current)
-      pocketMat.current.opacity = w * (0.22 + 0.12 * Math.sin(t.current * 3));
+      pocketMat.current.opacity = w * (0.12 + 0.06 * Math.sin(t.current * 3));
   });
 
   return (

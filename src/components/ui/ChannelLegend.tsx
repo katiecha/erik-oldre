@@ -11,7 +11,7 @@ export function ChannelLegend() {
             style={{ backgroundColor: c.color, boxShadow: `0 0 10px ${c.color}` }}
           />
           <span className="text-sm text-white/90">{c.label}</span>
-          <span className="font-mono text-[11px] text-white/45">{c.note}</span>
+          <span className="font-mono text-[11px] text-white/70">{c.note}</span>
         </li>
       ))}
     </ul>

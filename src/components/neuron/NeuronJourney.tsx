@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
+import { PerformanceMonitor } from "@react-three/drei";
 import * as THREE from "three";
 import { PALETTE } from "./palette";
 import { prefersReducedMotion } from "./useScrollStage";
@@ -37,6 +38,8 @@ export function NeuronJourney() {
   const [animate, setAnimate] = useState(true);
   const [quality, setQuality] = useState<Quality>("high");
   const [bloom, setBloom] = useState(true);
+  // Device pixel ratio, auto-lowered on slower machines via PerformanceMonitor.
+  const [dpr, setDpr] = useState(1.25);
 
   useEffect(() => {
     const raf = requestAnimationFrame(() => {
@@ -56,13 +59,20 @@ export function NeuronJourney() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0">
       <Canvas
-        dpr={[1, 1.25]}
+        dpr={dpr}
         camera={CAMERA_START}
         gl={{ antialias: false, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
         }}
       >
+        {/* Auto-lower resolution if the frame rate drops on a slower machine. */}
+        <PerformanceMonitor
+          onDecline={() => setDpr(1)}
+          onIncline={() => setDpr(1.25)}
+          flipflops={3}
+          onFallback={() => setDpr(1)}
+        />
         <color attach="background" args={[PALETTE.bg]} />
         <fog attach="fog" args={[PALETTE.bg, FOG_NEAR, FOG_FAR]} />
         <SpectralField />
