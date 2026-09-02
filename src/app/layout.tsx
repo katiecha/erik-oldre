@@ -24,9 +24,9 @@ const siteUrl = "https://erikoldre.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Erik Oldre — Materials Scientist",
+  title: "Erik Oldre - Materials Scientist",
   description:
-    "Erik Oldre — NSF Graduate Research Fellow and Ph.D. student in Materials Science & Engineering at Cornell. Research in block copolymer self-assembly, synaptic cell adhesion, and quantum materials.",
+    "Erik Oldre - NSF Graduate Research Fellow and Ph.D. student in Materials Science & Engineering at Cornell. Research in block copolymer self-assembly, synaptic cell adhesion, and quantum materials.",
   keywords: [
     "Erik Oldre",
     "Cornell",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Erik Oldre" }],
   openGraph: {
-    title: "Erik Oldre — Materials Scientist",
+    title: "Erik Oldre - Materials Scientist",
     description:
       "Research in block copolymer self-assembly, synaptic cell adhesion, and quantum materials.",
     url: siteUrl,
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Erik Oldre — Materials Scientist",
+    title: "Erik Oldre - Materials Scientist",
     description:
       "Research in block copolymer self-assembly, synaptic cell adhesion, and quantum materials.",
     images: ["/erik.jpg"],

@@ -7,7 +7,7 @@ import * as THREE from "three";
 import { PALETTE } from "./palette";
 
 /**
- * A full-screen, animated spectral flow field — domain-warped fractal noise
+ * A full-screen, animated spectral flow field - domain-warped fractal noise
  * mapped to a navy→cyan base with sparse hot (yellow→orange→red) filaments,
  * echoing the momentum-space spectral plots of quantum materials. It sits
  * behind every structure so the scene reads as one flowing field rather than
@@ -26,7 +26,7 @@ const fragmentShader = /* glsl */ `
   varying vec2 vUv;
   uniform float uTime;
   uniform float uAspect;
-  uniform vec3 cNavy, cBlue, cPurple, cCyan, cYellow, cOrange, cRed;
+  uniform vec3 cNavy, cBlue, cCyan, cYellow, cOrange, cRed;
 
   float hash(vec2 p) {
     p = fract(p * vec2(123.34, 345.45));
@@ -54,12 +54,11 @@ const fragmentShader = /* glsl */ `
     return v;
   }
 
-  // navy → blue/purple → cyan base, tuned as soft optical density.
+  // royal-blue → blue → cyan base (the blue end of a jet colormap).
   vec3 blueField(float x) {
     x = clamp(x, 0.0, 1.0);
-    vec3 col = mix(cNavy, cBlue, smoothstep(0.0, 0.55, x));
-    col = mix(col, cPurple, smoothstep(0.34, 0.68, x) * 0.55);
-    col = mix(col, cCyan, smoothstep(0.64, 1.0, x));
+    vec3 col = mix(cNavy, cBlue, smoothstep(0.0, 0.58, x));
+    col = mix(col, cCyan, smoothstep(0.6, 1.0, x));
     return col;
   }
 
@@ -69,18 +68,20 @@ const fragmentShader = /* glsl */ `
     float t = uTime * 0.04;
 
     vec2 p = uv * 1.12;
-    // single-step domain warp — cheaper than two steps, still smooth/flowing
+    // single-step domain warp - cheaper than two steps, still smooth/flowing
     vec2 q = vec2(fbm(p + t), fbm(p + vec2(3.1, 1.7) - t));
     float f = fbm(p + 2.4 * q);
 
-    vec3 col = blueField(f) * 0.5;
+    // Lifted floor + a touch of blue so low-density areas stay clearly blue
+    // (never a near-black blob).
+    vec3 col = blueField(f) * 0.74 + cBlue * 0.08;
 
     vec2 flowUv = uv + (q - 0.5) * 0.42;
     float riverA = smoothstep(0.52, 0.0, abs((flowUv.y - 0.54) + 0.2 * sin(flowUv.x * 1.8 + t * 2.2)));
     float riverB = smoothstep(0.44, 0.0, abs((flowUv.y - 0.42) - 0.22 * cos(flowUv.x * 1.55 - t * 1.3)));
     float riverC = smoothstep(0.38, 0.0, abs((flowUv.x - uAspect * 0.48) + 0.16 * sin(flowUv.y * 2.6 + t * 1.6)));
     vec3 coolFlow = mix(cBlue, cCyan, 0.72);
-    col += coolFlow * (riverA * 0.28 + riverB * 0.24 + riverC * 0.16);
+    col += coolFlow * (riverA * 0.34 + riverB * 0.28 + riverC * 0.2);
 
     // Broad spectral response bands, closer to light dispersion than texture.
     float bandA = smoothstep(0.46, 0.0, abs((uv.y - 0.5) + 0.18 * sin(uv.x * 1.9 + t * 1.65)));
@@ -88,15 +89,15 @@ const fragmentShader = /* glsl */ `
     float bandC = smoothstep(0.32, 0.0, abs((uv.y - 0.62) + 0.12 * sin(uv.x * 2.2 - t * 1.1)));
     col = mix(col, cOrange * 0.68 + cRed * 0.16 + cYellow * 0.16, (bandA + bandB + bandC) * 0.09);
 
-    // Soft hot density blooms — reuse the field value (no extra noise fetch).
-    float bloom = smoothstep(0.58, 0.9, f);
+    // Soft hot filaments - cyan → yellow → orange → red, reusing the field value.
+    float bloom = smoothstep(0.56, 0.9, f);
     vec3 hot = mix(cYellow, cRed, smoothstep(0.4, 0.9, f));
     hot = mix(hot, cOrange, 0.3);
-    col += bloom * hot * 0.12;
+    col += bloom * hot * 0.16;
 
-    // faint paper-figure vignette, so white text can sit directly in the field.
+    // faint vignette so the corners settle into deep blue.
     float vignette = smoothstep(0.96, 0.25, distance(vUv, vec2(0.5)));
-    col *= 0.72 + 0.28 * vignette;
+    col *= 0.78 + 0.22 * vignette;
 
     gl_FragColor = vec4(col, 1.0);
   }
@@ -111,8 +112,7 @@ export function SpectralField() {
       uTime: { value: 0 },
       uAspect: { value: 1 },
       cNavy: { value: new THREE.Color(PALETTE.bg) },
-      cBlue: { value: new THREE.Color("#1E3AA8") },
-      cPurple: { value: new THREE.Color("#7200D7") },
+      cBlue: { value: new THREE.Color("#2B5FC9") },
       cCyan: { value: new THREE.Color(PALETTE.soma) },
       cYellow: { value: new THREE.Color(PALETTE.gfp) },
       cOrange: { value: new THREE.Color(PALETTE.farRed) },

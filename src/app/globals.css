@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* Mirrors src/components/neuron/palette.ts — keep the two in sync. */
+/* Mirrors src/components/neuron/palette.ts - keep the two in sync. */
 @theme inline {
-  --color-bg: #0a1240;
-  --color-soma: #2cd8f5;
-  --color-puncta: #ff3131;
-  --color-gfp: #ffd21e;
-  --color-far-red: #ff7a1a;
-  --color-td-tomato: #39d98a;
+  --color-bg: #0b1e63;
+  --color-soma: #2fcfe6;
+  --color-puncta: #f5352a;
+  --color-gfp: #ffde3d;
+  --color-far-red: #ff922e;
+  --color-td-tomato: #57d14a;
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
@@ -16,7 +16,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #0a1240;
+  background: #0b1e63;
 }
 
 body {
@@ -24,30 +24,30 @@ body {
   -webkit-font-smoothing: antialiased;
   overscroll-behavior: none;
   background:
-    radial-gradient(ellipse at 50% -10%, rgba(44, 216, 245, 0.18), transparent 42%),
-    #0a1240;
+    radial-gradient(ellipse at 50% -10%, rgba(47, 207, 230, 0.16), transparent 44%),
+    #0b1e63;
 }
 
-/* Scrollbar tuned to the navy field */
+/* Scrollbar tuned to the royal-blue field */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a1240;
+  background: #0b1e63;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1c2a66;
+  background: #23367f;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a3c88;
+  background: #33499f;
 }
 
 /* A faint spectral-field glow helper */
 .field-grain {
   background-image: radial-gradient(
     circle at 50% 40%,
-    rgba(44, 216, 245, 0.06),
+    rgba(47, 207, 230, 0.06),
     transparent 60%
   );
 }
@@ -56,28 +56,10 @@ body {
   isolation: isolate;
 }
 
-/* Dense dark halo + soft local scrim so light text stays legible (WCAG) over
-   the bright flow field without a hard panel. */
+/* Captions sit as white type directly in the field (like the reference plots).
+   No shadows - legibility comes from bright type over a moderate blue field. */
 .flow-caption {
   position: relative;
-  text-shadow:
-    0 1px 2px rgba(3, 7, 26, 0.98),
-    0 0 10px rgba(3, 7, 26, 0.95),
-    0 0 28px rgba(3, 7, 26, 0.82),
-    0 0 64px rgba(3, 7, 26, 0.6);
-}
-.flow-caption::before {
-  content: "";
-  position: absolute;
-  inset: -14% -12%;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(4, 8, 30, 0.74),
-    rgba(4, 8, 30, 0.46) 52%,
-    transparent 76%
-  );
 }
 
 .flow-caption-left {
@@ -86,10 +68,6 @@ body {
 
 .flow-caption-right {
   padding-right: clamp(0rem, 2vw, 2rem);
-}
-
-.flow-support {
-  filter: drop-shadow(0 0 24px rgba(10, 18, 64, 0.86));
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -33,7 +33,7 @@ export function NarrativeSection({
         <SectionHeading eyebrow={stage.eyebrow} title={stage.title} accent={accent}>
           <p>{stage.body}</p>
         </SectionHeading>
-        {children && <div className="flow-support mt-8">{children}</div>}
+        {children && <div className="mt-8">{children}</div>}
       </Reveal>
     </section>
   );

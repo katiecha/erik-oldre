@@ -53,7 +53,7 @@ export function AboutSection() {
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-white/70">
               Research history
             </p>
-            <ul className="mt-6 space-y-6 border-l border-white/10 pl-6">
+            <ul className="mt-6 space-y-3 border-l border-white/10 pl-6">
               {RESEARCH_HISTORY.map((r) => (
                 <li key={r.lab} className="relative">
                   <span className="absolute -left-[27px] top-1.5 h-2 w-2 rounded-full bg-gfp shadow-[0_0_10px_var(--color-gfp)]" />
@@ -66,9 +66,6 @@ export function AboutSection() {
                       {r.period}
                     </span>
                   </div>
-                  <p className="mt-1.5 text-sm leading-relaxed text-white/78">
-                    {r.summary}
-                  </p>
                 </li>
               ))}
             </ul>

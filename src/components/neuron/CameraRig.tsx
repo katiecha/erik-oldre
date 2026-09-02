@@ -19,7 +19,7 @@ const CAMERA_SMOOTHING = 0.0016;
 /**
  * Drives the single camera from scroll progress. Each stage contributes a
  * weighted target position; we blend them and lerp smoothly every frame.
- * Pointer position adds a gentle parallax. No React state — refs only.
+ * Pointer position adds a gentle parallax. No React state - refs only.
  */
 export function CameraRig() {
   const camera = useThree((s) => s.camera);

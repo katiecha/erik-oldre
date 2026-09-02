@@ -15,7 +15,7 @@ export const GLOW_MATERIAL_PROPS = {
 
 /**
  * Sets an Object3D's visibility from a stage's scroll-crossfade weight.
- * Returns the weight, or `null` when the stage is effectively hidden — callers
+ * Returns the weight, or `null` when the stage is effectively hidden - callers
  * should bail out of their useFrame body on `null`.
  */
 export function applyStageVisibility(
@@ -28,7 +28,7 @@ export function applyStageVisibility(
 }
 
 /**
- * Returns a function that runs `fn` on only the first call — for the
+ * Returns a function that runs `fn` on only the first call - for the
  * "apply instance transforms once" pattern inside a useFrame loop.
  */
 export function useRunOnce() {

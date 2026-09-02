@@ -1,6 +1,4 @@
-import { PROFILE, STAGES } from "@/lib/content";
-
-const hero = STAGES[0];
+import { PROFILE } from "@/lib/content";
 
 export function HeroOverlay() {
   return (
@@ -17,22 +15,9 @@ export function HeroOverlay() {
           {PROFILE.name}
         </h1>
 
-        <p className="mt-8 max-w-xl font-serif text-xl italic text-white/80 sm:text-2xl">
-          {hero.title}
-        </p>
-
         <p className="mt-5 max-w-md text-sm leading-relaxed text-white/78">
-          {PROFILE.title}
-          <br />
           {PROFILE.affiliation}
         </p>
-      </div>
-
-      <div className="pointer-events-none absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/70">
-        <span className="font-mono text-[10px] uppercase tracking-[0.3em]">
-          Scroll
-        </span>
-        <span className="h-10 w-px animate-pulse bg-gradient-to-b from-white/70 to-transparent" />
       </div>
     </section>
   );

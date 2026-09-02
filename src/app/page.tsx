@@ -7,7 +7,6 @@ import {
 } from "@/components/sections/NarrativeSection";
 import { ChannelLegend } from "@/components/ui/ChannelLegend";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { PublicationsSection } from "@/components/sections/PublicationsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { PALETTE } from "@/components/neuron/palette";
 import { STAGES, PUBLICATIONS } from "@/lib/content";
@@ -22,7 +21,7 @@ export default function Home() {
       <main className="relative z-10">
         <HeroOverlay />
 
-        {/* 01 — Synapse */}
+        {/* 01 - Synapse */}
         <NarrativeSection stage={STAGES[1]} accent={PALETTE.gfp} side="left">
           <div className="space-y-6">
             <ChannelLegend />
@@ -34,7 +33,7 @@ export default function Home() {
           </div>
         </NarrativeSection>
 
-        {/* 02 — Molecule */}
+        {/* 02 - Molecule */}
         <NarrativeSection stage={STAGES[2]} accent={PALETTE.puncta} side="right">
           <PaperLink
             href={PUBLICATIONS[1].url}
@@ -43,17 +42,16 @@ export default function Home() {
           />
         </NarrativeSection>
 
-        {/* 03 — Material */}
+        {/* 03 - Material */}
         <NarrativeSection stage={STAGES[3]} accent={PALETTE.farRed} side="left">
           <p className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white/70">
             Wiesner Group · Cornell MSE
           </p>
         </NarrativeSection>
 
-        {/* 04 — Scientist + publications + contact. */}
+        {/* 04 - Scientist + publications + contact. */}
         <div className="relative overflow-hidden">
           <AboutSection />
-          <PublicationsSection />
           <ContactSection />
         </div>
       </main>

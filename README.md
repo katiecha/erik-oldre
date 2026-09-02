@@ -1,4 +1,4 @@
-# Erik Oldre — Personal Site
+# Erik Oldre - Personal Site
 
 **🔗 Live site: https://katiecha.github.io/erik-oldre/**
 
@@ -8,13 +8,13 @@ and Ph.D. student in Materials Science & Engineering at Cornell (Wiesner Group).
 The site *artfully depicts neurons*, grounded in Erik's real science. A single WebGL
 canvas plays a cinematic scroll journey through scales:
 
-1. **Hero** — a glowing cortical neuron network
-2. **The Synapse** — a pyramidal neuron wrapped by a CCK basket cell, studded with
+1. **Hero** - a glowing cortical neuron network
+2. **The Synapse** - a pyramidal neuron wrapped by a CCK basket cell, studded with
    VGLUT3 synaptic puncta (his first-author *Current Research in Neurobiology* paper)
-3. **The Molecule** — the Ankyrin B ANK-repeat solenoid docking the NrCAM FIGQY motif
+3. **The Molecule** - the Ankyrin B ANK-repeat solenoid docking the NrCAM FIGQY motif
    (his *Journal of Biological Chemistry* paper)
-4. **The Material** — a chiral block-copolymer mesophase (his current Wiesner Group work)
-5. **The Scientist** — bio, research history, publications, and contact
+4. **The Material** - a chiral block-copolymer mesophase (his current Wiesner Group work)
+5. **The Scientist** - bio, research history, publications, and contact
 
 ## Stack
 
@@ -27,7 +27,7 @@ canvas plays a cinematic scroll journey through scales:
 - One persistent `<Canvas>` (`components/neuron/NeuronJourney.tsx`) fixed behind the DOM.
 - `components/neuron/useScrollStage.ts` holds a module-level `scrollStore`; the DOM writes
   scroll progress (derived from the `[data-stage]` section centers) and the scene reads it
-  every frame — no React re-renders on scroll.
+  every frame - no React re-renders on scroll.
 - Each stage component fades/animates itself from its `stageWeight`; `CameraRig` blends the
   camera distance across stages.
 - Palette (`components/neuron/palette.ts`) uses Erik's actual fluorophore colors.
@@ -38,14 +38,14 @@ canvas plays a cinematic scroll journey through scales:
 
 ```bash
 pnpm install
-pnpm dev      # always http://localhost:3002 — stays up, Ctrl+C stops cleanly
+pnpm dev      # always http://localhost:3002 - stays up, Ctrl+C stops cleanly
 pnpm build
 ```
 
 `pnpm dev` (or `npm run dev`) runs `scripts/dev.mjs`, which:
 
 - **always uses port 3002** so the local URL never changes (override with `PORT=3003 pnpm dev`). If a stale copy of *this* project is still holding 3002, it reclaims the port; if another project has it, it tells you instead of stomping on it;
-- **keeps the preview up** — restarts the dev server if it crashes;
+- **keeps the preview up** - restarts the dev server if it crashes;
 - **shuts down cleanly** on Ctrl+C, killing the whole process tree and freeing the port (no orphaned node processes).
 
 Use `pnpm dev:next` for the plain `next dev` if you ever want it.

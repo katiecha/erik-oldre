@@ -19,7 +19,7 @@ const BLOCK_COLORS = [
 type Strand = { geometry: THREE.TubeGeometry; color: THREE.Color };
 
 /**
- * Stage 03 — the material. Interwoven chiral strands standing in for a
+ * Stage 03 - the material. Interwoven chiral strands standing in for a
  * self-assembled block-copolymer mesophase: multiple helices twisting around a
  * common axis with a single handedness. Instanced beads across the palette
  * suggest distinct copolymer blocks. Evokes Erik's current Wiesner Group work.

@@ -1,23 +1,23 @@
 import * as THREE from "three";
 
 /**
- * A spectral-function palette — a deep navy field with a "hot" colormap
- * (cyan → green → yellow → orange → red), echoing the momentum-space spectral
- * plots of quantum materials (Erik's field). Marks glow additively on the navy.
+ * A "jet" spectral-function palette on a deep royal-blue field - blue → cyan →
+ * yellow → orange → red, matching the momentum-space plots of quantum materials
+ * (Erik's field). No purple; the hot end is warm, the base is saturated blue.
  */
 export const PALETTE = {
-  /** deep navy field */
-  bg: "#0A1240",
-  /** primary structure — cyan */
-  soma: "#2CD8F5",
-  /** hot points / synaptic puncta — red */
-  puncta: "#FF3131",
-  /** bright contour / primary UI accent — yellow */
-  gfp: "#FFD21E",
-  /** hot region — orange */
-  farRed: "#FF7A1A",
-  /** cool accent — spectral green */
-  tdTomato: "#39D98A",
+  /** deep royal-blue field */
+  bg: "#0B1E63",
+  /** primary structure - cyan */
+  soma: "#2FCFE6",
+  /** hot points / synaptic puncta - red */
+  puncta: "#F5352A",
+  /** bright contour / primary UI accent - yellow */
+  gfp: "#FFDE3D",
+  /** hot region - orange */
+  farRed: "#FF922E",
+  /** cool accent - spectral green */
+  tdTomato: "#57D14A",
 } as const;
 
 export type PaletteKey = keyof typeof PALETTE;

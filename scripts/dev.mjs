@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // A friendly wrapper around `next dev` that:
 //   1. Always runs on a fixed port (3002) so the local URL never changes.
-//   2. Keeps the preview up — if the dev server crashes, it restarts it.
-//   3. Shuts down cleanly on Ctrl+C — kills the whole process tree, frees the
+//   2. Keeps the preview up - if the dev server crashes, it restarts it.
+//   3. Shuts down cleanly on Ctrl+C - kills the whole process tree, frees the
 //      port, and never leaves an orphaned node process behind.
 //
 // If the port is held by a *stale copy of this project*, it reclaims it. If
@@ -68,7 +68,7 @@ async function ensurePortFree() {
   const ours = pidsOnPort(PORT).filter((pid) => cwdOfPid(pid) === PROJECT_ROOT);
   if (ours.length) {
     console.log(
-      `\x1b[2m  Port ${PORT} was held by a stale dev server for this project — reclaiming it.\x1b[0m`,
+      `\x1b[2m  Port ${PORT} was held by a stale dev server for this project - reclaiming it.\x1b[0m`,
     );
     for (const pid of ours) {
       try {
@@ -138,7 +138,7 @@ async function startServer() {
     child = null;
     if (shuttingDown) return;
 
-    // Killed by an external signal — another dev instance reclaiming this port,
+    // Killed by an external signal - another dev instance reclaiming this port,
     // or a manual kill. Concede cleanly instead of restarting and fighting for
     // the port (which would ping-pong two instances forever).
     if (signal) {
@@ -156,7 +156,7 @@ async function startServer() {
 
     if (recentRestarts > 5) {
       console.error(
-        `\n\x1b[31m✖ Dev server keeps crashing on startup — stopping.\x1b[0m ` +
+        `\n\x1b[31m✖ Dev server keeps crashing on startup - stopping.\x1b[0m ` +
           `Fix the error above, then run \`npm run dev\` again.\n`,
       );
       process.exit(code ?? 1);

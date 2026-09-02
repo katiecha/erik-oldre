@@ -42,7 +42,7 @@ function basketGeometry() {
 }
 
 /**
- * Stage 01 — the synapse. A pyramidal neuron (blue soma + apical / basal
+ * Stage 01 - the synapse. A pyramidal neuron (blue soma + apical / basal
  * dendrites) embraced by a CCK basket-cell axon (green), with VGLUT3 puncta
  * (cyan) glowing at perisomatic contacts. Faithful to Erik's confocal work.
  */
@@ -94,7 +94,7 @@ export function PyramidalNeuron({ quality }: { quality: Quality }) {
 
   return (
     <group ref={group}>
-      {/* Soma — pyramidal cell body */}
+      {/* Soma - pyramidal cell body */}
       <mesh>
         <coneGeometry args={[0.95, 2.2, 32]} />
         <meshBasicMaterial

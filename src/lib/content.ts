@@ -10,7 +10,7 @@ export const PROFILE = {
   name: "Erik Oldre",
   fullName: "Erik N. Oldre",
   pronouns: "He/Him",
-  // TODO(erik): confirm preferred title — "Ph.D. student", "Ph.D. candidate", or "researcher".
+  // TODO(erik): confirm preferred title - "Ph.D. student", "Ph.D. candidate", or "researcher".
   title: "Ph.D. Researcher, Materials Science & Engineering",
   affiliation: "Cornell University · Wiesner Group",
   fellowship: "NSF Graduate Research Fellow",
@@ -29,7 +29,7 @@ export const BIO = {
   lead: "NSF Graduate Research Fellow, Materials Science & Engineering, Cornell University.",
   paragraphs: [
     "Ph.D. student in the Wiesner Group at Cornell. Studying homochiral block copolymer self-assembly toward mesostructured quantum materials.",
-    "B.S. Chemistry, UNC Chapel Hill — Highest Distinction, Phi Beta Kappa. Prior work in synaptic cell adhesion and fluoride-ion battery materials.",
+    "B.S. Chemistry, UNC Chapel Hill - Highest Distinction, Phi Beta Kappa. Prior work in synaptic cell adhesion and fluoride-ion battery materials.",
   ],
 } as const;
 
@@ -44,21 +44,21 @@ export const RESEARCH_HISTORY: ResearchEntry[] = [
   {
     lab: "Wiesner Group",
     institution: "Cornell University",
-    period: "2025 — Present",
+    period: "2025 - Present",
     summary:
       "Studying homochiral block copolymer self-assembly; chiral phases for mesostructured quantum materials.",
   },
   {
     lab: "Warren Lab",
     institution: "UNC Chapel Hill",
-    period: "2024 — 2025",
+    period: "2024 - 2025",
     summary:
       "Researched fluorination of the Y₂C fluoride-ion battery anode; X-ray crystallography and ML molecular dynamics.",
   },
   {
     lab: "Maness Lab",
     institution: "UNC School of Medicine",
-    period: "2022 — 2025",
+    period: "2022 - 2025",
     summary:
       "Investigated NrCAM and Ankyrin B in synaptic pruning and ASD; mouse knockouts, confocal/STED imaging, AlphaFold modeling.",
   },
@@ -129,7 +129,7 @@ export const STAGES: Stage[] = [
     id: "synapse",
     index: 1,
     cameraZ: 7,
-    eyebrow: "01 — Neuroscience",
+    eyebrow: "01 - Neuroscience",
     title: "Perisomatic synaptic adhesion",
     body: "NrCAM and Ankyrin B build perisomatic synapses from CCK basket interneurons onto pyramidal neurons.",
   },
@@ -137,7 +137,7 @@ export const STAGES: Stage[] = [
     id: "molecule",
     index: 2,
     cameraZ: 4.6,
-    eyebrow: "02 — Structural Biology",
+    eyebrow: "02 - Structural Biology",
     title: "The Ankyrin B complex",
     body: "AlphaFold modeling of the Ankyrin B–NrCAM–β2-spectrin interface, validated by co-immunoprecipitation.",
   },
@@ -145,7 +145,7 @@ export const STAGES: Stage[] = [
     id: "materials",
     index: 3,
     cameraZ: 10,
-    eyebrow: "03 — Materials Science",
+    eyebrow: "03 - Materials Science",
     title: "Chiral block copolymer self-assembly",
     body: "Homochiral evolution toward mesostructured quantum materials.",
   },

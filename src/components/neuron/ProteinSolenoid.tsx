@@ -23,7 +23,7 @@ function solenoidCurve() {
 }
 
 /**
- * Stage 02 — the molecule as flowing light: a translucent solenoid ribbon with
+ * Stage 02 - the molecule as flowing light: a translucent solenoid ribbon with
  * a faint docking strand, evocative of structure without becoming a separate
  * object pasted over the field.
  */

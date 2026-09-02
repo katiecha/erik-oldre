@@ -27,7 +27,7 @@ function buildNetwork(count: number): NetworkData {
   const colorIdx: number[] = [];
 
   for (let i = 0; i < count; i++) {
-    // Flattened ellipsoidal cloud — reads as a cortical field.
+    // Flattened ellipsoidal cloud - reads as a cortical field.
     const r = 3 + rand() * 5;
     const theta = rand() * Math.PI * 2;
     const y = (rand() - 0.5) * 7;
