@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PROFILE, BIO, RESEARCH_HISTORY, STAGES } from "@/lib/content";
+import { assetPath } from "@/lib/assets";
 import { PALETTE } from "@/components/neuron/palette";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -16,7 +17,7 @@ export function AboutSection() {
         <Reveal className="flex flex-col items-center gap-5 md:sticky md:top-28">
           <div className="relative h-56 w-56 overflow-hidden border border-white/15 bg-[#071033]/20">
             <Image
-              src="/erik.jpg"
+              src={assetPath("/erik.jpg")}
               alt="Erik Oldre"
               fill
               sizes="224px"
