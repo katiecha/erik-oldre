@@ -38,11 +38,11 @@ export function AboutSection() {
             <SectionHeading
               eyebrow={about.eyebrow}
               title={about.title}
-              accent={PALETTE.soma}
+              accent={PALETTE.gfp}
             />
           </Reveal>
 
-          <Reveal delay={0.05} className="mt-6 space-y-4 text-white/70">
+          <Reveal delay={0.05} className="mt-6 space-y-4 text-white/80">
             {BIO.paragraphs.map((p, i) => (
               <p key={i} className="leading-relaxed">
                 {p}

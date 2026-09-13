@@ -39,7 +39,13 @@ export function NarrativeSection({
   );
 }
 
-/** A small inline link to a paper, styled as a scientific citation chip. */
+/**
+ * A small inline link to a paper, styled as a scientific citation chip.
+ *
+ * The chip carries its own near-black ground on purpose: the accent colours are
+ * saturated rather than bright, and at 12px they disappear when a lit part of
+ * the field drifts behind them.
+ */
 export function PaperLink({
   href,
   label,
@@ -54,8 +60,8 @@ export function PaperLink({
       href={href}
       target="_blank"
       rel="noreferrer noopener"
-      className="inline-flex items-center gap-2 border-b px-0 py-1 font-mono text-xs uppercase tracking-wider transition-colors hover:text-white"
-      style={{ borderColor: `${accent}66`, color: accent }}
+      className="inline-flex items-center gap-2 rounded-full border bg-[#06020E]/80 px-4 py-2 font-mono text-xs uppercase tracking-wider backdrop-blur-[2px] transition-colors hover:text-white"
+      style={{ borderColor: `${accent}55`, color: accent }}
     >
       {label} ↗
     </a>

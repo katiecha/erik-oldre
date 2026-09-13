@@ -34,7 +34,7 @@ export function BlockCopolymer({ quality }: { quality: Quality }) {
     for (let s = 0; s < strands; s++) {
       const offset = (s / strands) * Math.PI * 2;
       const pts: THREE.Vector3[] = [];
-      const steps = quality === "high" ? 120 : 84;
+      const steps = quality === "high" ? 120 : 104;
       for (let i = 0; i <= steps; i++) {
         const f = i / steps;
         const y = THREE.MathUtils.lerp(-2.7, 2.7, f);
@@ -47,7 +47,7 @@ export function BlockCopolymer({ quality }: { quality: Quality }) {
           new THREE.CatmullRomCurve3(pts),
           steps,
           0.2,
-          10,
+          16,
           false,
         ),
         color: BLOCK_COLORS[s % BLOCK_COLORS.length],

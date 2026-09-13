@@ -83,7 +83,7 @@ export function SynapticPuncta({
       args={[undefined, undefined, count]}
       frustumCulled={false}
     >
-      <sphereGeometry args={[1, 10, 10]} />
+      <sphereGeometry args={[1, 14, 14]} />
       <meshBasicMaterial ref={mat} color={COLORS.puncta} {...GLOW_MATERIAL_PROPS} />
     </instancedMesh>
   );

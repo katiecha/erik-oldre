@@ -30,7 +30,7 @@ function solenoidCurve() {
 export function ProteinSolenoid() {
   const curve = useMemo(() => solenoidCurve(), []);
   const backbone = useMemo(
-    () => new THREE.TubeGeometry(curve, 120, 0.16, 8, false),
+    () => new THREE.TubeGeometry(curve, 160, 0.16, 12, false),
     [curve],
   );
 
@@ -45,7 +45,7 @@ export function ProteinSolenoid() {
       const r = 1.85 + 0.3 * Math.sin(f * Math.PI * 3);
       pts.push(new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r));
     }
-    return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), steps, 0.34, 10, false);
+    return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), steps, 0.34, 16, false);
   }, []);
 
   // NrCAM FIGQY strand docking at ~ANK repeat R11 (≈ 45% up the coil).
@@ -59,7 +59,7 @@ export function ProteinSolenoid() {
       base.clone().add(out.clone().multiplyScalar(0.8)),
       base.clone().add(out.clone().multiplyScalar(0.35)),
     ];
-    return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 36, 0.07, 6, false);
+    return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 48, 0.07, 10, false);
   }, [dock]);
 
   const group = useRef<THREE.Group>(null);
@@ -82,8 +82,8 @@ export function ProteinSolenoid() {
 
     // Kept faint so the protein reads as a suggestion in the field, not a
     // separate, identifiable object.
-    if (ribbonMat.current) ribbonMat.current.opacity = w * 0.22;
-    if (backboneMat.current) backboneMat.current.opacity = w * 0.09;
+    if (ribbonMat.current) ribbonMat.current.opacity = w * 0.12;
+    if (backboneMat.current) backboneMat.current.opacity = w * 0.07;
     if (nrcamMat.current) nrcamMat.current.opacity = w * 0.06;
     if (pocketMat.current)
       pocketMat.current.opacity = w * (0.12 + 0.06 * Math.sin(t.current * 3));
@@ -107,7 +107,7 @@ export function ProteinSolenoid() {
 
       {/* Binding pocket highlight */}
       <mesh position={dock.toArray()}>
-        <sphereGeometry args={[0.22, 10, 10]} />
+        <sphereGeometry args={[0.22, 16, 16]} />
         <meshBasicMaterial ref={pocketMat} color={COLORS.farRed} {...GLOW_MATERIAL_PROPS} />
       </mesh>
     </group>

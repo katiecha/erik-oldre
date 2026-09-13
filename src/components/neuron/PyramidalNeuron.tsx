@@ -13,7 +13,7 @@ const V = (x: number, y: number, z: number) => new THREE.Vector3(x, y, z);
 
 function tube(points: THREE.Vector3[], radius: number, seg = 40) {
   const curve = new THREE.CatmullRomCurve3(points);
-  return new THREE.TubeGeometry(curve, seg, radius, 6, false);
+  return new THREE.TubeGeometry(curve, seg, radius, 10, false);
 }
 
 /** A basket-cell axon winding around the soma as a helix (the "basket"). */
@@ -36,7 +36,7 @@ function basketGeometry() {
     new THREE.CatmullRomCurve3(pts),
     220,
     0.035,
-    6,
+    8,
     false,
   );
 }

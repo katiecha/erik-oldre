@@ -17,6 +17,14 @@ import { BlockCopolymer } from "./BlockCopolymer";
 export type Quality = "high" | "low";
 
 const CAMERA_START = { position: [0, 0, 15] as [number, number, number], fov: 50, near: 0.1, far: 100 };
+/**
+ * Phones have tiny viewports but very high device pixel ratios, so the old flat
+ * 1.25 cap meant rendering a 3x screen at well under half resolution - every
+ * curve came out stair-stepped. A phone at 2x still pushes fewer pixels than a
+ * desktop window at 1.5x, so this is cheaper than it looks.
+ */
+const MAX_DPR_MOBILE = 2;
+const MAX_DPR_DESKTOP = 1.5;
 const FOG_NEAR = 12;
 const FOG_FAR = 30;
 
@@ -39,6 +47,7 @@ export function NeuronJourney() {
   const [animate, setAnimate] = useState(true);
   const [quality, setQuality] = useState<Quality>("high");
   const [bloom, setBloom] = useState(true);
+  const [maxDpr, setMaxDpr] = useState(MAX_DPR_DESKTOP);
 
   useEffect(() => {
     const raf = requestAnimationFrame(() => {
@@ -47,6 +56,12 @@ export function NeuronJourney() {
       const small = window.innerWidth < 768;
       const weak = (navigator.hardwareConcurrency ?? 8) <= 4;
       setQuality(small || weak ? "low" : "high");
+      setMaxDpr(
+        Math.min(
+          window.devicePixelRatio || 1,
+          small ? MAX_DPR_MOBILE : MAX_DPR_DESKTOP,
+        ),
+      );
       // Debug: ?nobloom disables post-processing.
       setBloom(!new URLSearchParams(window.location.search).has("nobloom"));
     });
@@ -62,7 +77,7 @@ export function NeuronJourney() {
     <div className="pointer-events-none fixed inset-0 z-0">
       <Canvas
         // Static, capped DPR - no dynamic resizing (which caused hitches).
-        dpr={[1, 1.25]}
+        dpr={[1, maxDpr]}
         camera={CAMERA_START}
         gl={{ antialias: false, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
@@ -82,7 +97,7 @@ export function NeuronJourney() {
           <BlockCopolymer quality={quality} />
         </SubjectFrame>
 
-        {bloom && <Effects />}
+        {bloom && <Effects quality={quality} />}
       </Canvas>
     </div>
   );
@@ -121,7 +136,7 @@ function StaticField() {
       className="field-grain pointer-events-none fixed inset-0 z-0"
       style={{
         background:
-          "radial-gradient(ellipse at 32% 28%, rgba(47,207,230,0.16), transparent 46%), radial-gradient(ellipse at 72% 62%, rgba(255,146,46,0.12), transparent 46%), radial-gradient(ellipse at 50% 92%, rgba(245,53,42,0.10), transparent 52%), #0B1E63",
+          "radial-gradient(ellipse at 32% 28%, rgba(76,29,149,0.55), transparent 48%), radial-gradient(ellipse at 72% 62%, rgba(255,106,19,0.16), transparent 44%), radial-gradient(ellipse at 50% 92%, rgba(255,45,85,0.14), transparent 52%), #0A0412",
       }}
     />
   );

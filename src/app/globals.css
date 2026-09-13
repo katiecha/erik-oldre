@@ -2,12 +2,12 @@
 
 /* Mirrors src/components/neuron/palette.ts - keep the two in sync. */
 @theme inline {
-  --color-bg: #0b1e63;
-  --color-soma: #2fcfe6;
-  --color-puncta: #f5352a;
-  --color-gfp: #ffde3d;
-  --color-far-red: #ff922e;
-  --color-td-tomato: #57d14a;
+  --color-bg: #0a0412;
+  --color-soma: #a961ff;
+  --color-puncta: #ff2d55;
+  --color-gfp: #ffb020;
+  --color-far-red: #ff6a13;
+  --color-td-tomato: #e838c8;
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
@@ -16,7 +16,7 @@
 
 html {
   scroll-behavior: smooth;
-  background: #0b1e63;
+  background: #0a0412;
 }
 
 body {
@@ -24,30 +24,30 @@ body {
   -webkit-font-smoothing: antialiased;
   overscroll-behavior: none;
   background:
-    radial-gradient(ellipse at 50% -10%, rgba(47, 207, 230, 0.16), transparent 44%),
-    #0b1e63;
+    radial-gradient(ellipse at 50% -10%, rgba(169, 97, 255, 0.18), transparent 44%),
+    #0a0412;
 }
 
-/* Scrollbar tuned to the royal-blue field */
+/* Scrollbar tuned to the near-black violet field */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b1e63;
+  background: #0a0412;
 }
 ::-webkit-scrollbar-thumb {
-  background: #23367f;
+  background: #3a1a66;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #33499f;
+  background: #542a8f;
 }
 
 /* A faint spectral-field glow helper */
 .field-grain {
   background-image: radial-gradient(
     circle at 50% 40%,
-    rgba(47, 207, 230, 0.06),
+    rgba(169, 97, 255, 0.08),
     transparent 60%
   );
 }
@@ -57,7 +57,7 @@ body {
 }
 
 /* Captions sit as white type directly in the field (like the reference plots).
-   No shadows - legibility comes from bright type over a moderate blue field. */
+   No shadows - legibility comes from bright type over a near-black field. */
 .flow-caption {
   position: relative;
 }
@@ -70,22 +70,35 @@ body {
   padding-right: clamp(0rem, 2vw, 2rem);
 }
 
-/* On phones the copy and the 3D subject share the same column, so the type
-   needs its own ground. A soft scrim keeps the accent colours legible where
-   the field washes out to near-white. */
+/* Captions sit on whatever the flow field happens to be doing behind them, and
+   the field runs from near-black to lit violet. A soft elliptical scrim gives
+   the type its own ground so both white copy and the accent colours hold up
+   wherever a stage lands. Radii are under half the box so the falloff reaches
+   zero inside every edge - no card outline. */
+.flow-caption::before {
+  content: "";
+  position: absolute;
+  inset: -4rem -5rem -6rem;
+  z-index: -1;
+  background: radial-gradient(
+    56% 54% at 50% 50%,
+    rgba(6, 2, 14, 0.94),
+    rgba(6, 2, 14, 0.78) 42%,
+    rgba(6, 2, 14, 0.38) 68%,
+    transparent 92%
+  );
+}
+
+/* Phones put the copy and the subject in one column, so the scrim has to work
+   harder - and its left/right edges land at the viewport edges anyway. */
 @media (max-width: 767px) {
   .flow-caption::before {
-    content: "";
-    position: absolute;
-    /* The left/right edges land at the viewport edges, so only the vertical
-       falloff has to reach zero inside the box - hence the 52% y-radius. */
     inset: -3rem -1.75rem -5rem;
-    z-index: -1;
     background: radial-gradient(
       92% 52% at 45% 50%,
-      rgba(7, 19, 64, 0.8),
-      rgba(7, 19, 64, 0.52) 46%,
-      rgba(7, 19, 64, 0.2) 72%,
+      rgba(6, 2, 14, 0.9),
+      rgba(6, 2, 14, 0.68) 46%,
+      rgba(6, 2, 14, 0.3) 72%,
       transparent 92%
     );
   }

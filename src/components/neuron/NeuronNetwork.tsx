@@ -136,7 +136,7 @@ export function NeuronNetwork({ quality }: { quality: Quality }) {
         args={[undefined, undefined, count]}
         frustumCulled={false}
       >
-        <icosahedronGeometry args={[1, 2]} />
+        <icosahedronGeometry args={[1, 3]} />
         <meshBasicMaterial ref={nodeMat} {...GLOW_MATERIAL_PROPS} />
       </instancedMesh>
 
