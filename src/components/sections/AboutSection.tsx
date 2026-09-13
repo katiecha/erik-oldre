@@ -27,7 +27,7 @@ export function AboutSection() {
           <div className="text-center">
             <p className="font-serif text-xl text-white">{PROFILE.fullName}</p>
             <p className="mt-1 font-mono text-[11px] uppercase tracking-widest text-white/70">
-              {PROFILE.pronouns} · {PROFILE.location}
+              {PROFILE.pronouns} · {PROFILE.height} · {PROFILE.location}
             </p>
           </div>
         </Reveal>

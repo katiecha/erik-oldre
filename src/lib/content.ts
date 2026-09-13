@@ -10,6 +10,7 @@ export const PROFILE = {
   name: "Erik Oldre",
   fullName: "Erik N. Oldre",
   pronouns: "He/Him",
+  height: "6'2\"",
   // TODO(erik): confirm preferred title - "Ph.D. student", "Ph.D. candidate", or "researcher".
   title: "Ph.D. Researcher, Materials Science & Engineering",
   affiliation: "Cornell University · Wiesner Group",
@@ -28,8 +29,8 @@ export const PROFILE = {
 export const BIO = {
   lead: "NSF Graduate Research Fellow, Materials Science & Engineering, Cornell University.",
   paragraphs: [
-    "Ph.D. student in the Wiesner Group at Cornell. Studying homochiral block copolymer self-assembly toward mesostructured quantum materials.",
-    "B.S. Chemistry, UNC Chapel Hill - Highest Distinction, Phi Beta Kappa. Prior work in synaptic cell adhesion and fluoride-ion battery materials.",
+    "Ph.D. student in the Wiesner Group at Cornell, studying homochiral block copolymer self-assembly.",
+    "B.S. Chemistry, UNC Chapel Hill - Highest Distinction, Phi Beta Kappa. Prior work in synaptic adhesion and fluoride-ion batteries.",
   ],
 } as const;
 
@@ -131,7 +132,7 @@ export const STAGES: Stage[] = [
     cameraZ: 7,
     eyebrow: "01 - Neuroscience",
     title: "Perisomatic synaptic adhesion",
-    body: "NrCAM and Ankyrin B build perisomatic synapses from CCK basket interneurons onto pyramidal neurons.",
+    body: "NrCAM and Ankyrin B build perisomatic synapses onto pyramidal neurons.",
   },
   {
     id: "molecule",
@@ -139,7 +140,7 @@ export const STAGES: Stage[] = [
     cameraZ: 4.6,
     eyebrow: "02 - Structural Biology",
     title: "The Ankyrin B complex",
-    body: "AlphaFold modeling of the Ankyrin B–NrCAM–β2-spectrin interface, validated by co-immunoprecipitation.",
+    body: "AlphaFold modeling of the Ankyrin B–NrCAM–β2-spectrin interface.",
   },
   {
     id: "materials",
@@ -147,7 +148,7 @@ export const STAGES: Stage[] = [
     cameraZ: 10,
     eyebrow: "03 - Materials Science",
     title: "Chiral block copolymer self-assembly",
-    body: "Homochiral evolution toward mesostructured quantum materials.",
+    body: "Toward mesostructured quantum materials.",
   },
   {
     id: "about",

@@ -24,13 +24,23 @@ canvas plays a cinematic scroll journey through scales:
 
 ## Architecture
 
-- One persistent `<Canvas>` (`components/neuron/NeuronJourney.tsx`) fixed behind the DOM.
+- One persistent `<Canvas>` (`components/neuron/NeuronJourney.tsx`) fixed behind the DOM,
+  with a capped DPR (`[1, 1.25]`) and scene fog so structures dissolve into the field.
+- `components/neuron/SpectralField.tsx` draws a full-screen shader quad behind every
+  structure - domain-warped fractal noise on a navy base with sparse hot filaments - so
+  the scene reads as one flowing field rather than separate glowing objects.
 - `components/neuron/useScrollStage.ts` holds a module-level `scrollStore`; the DOM writes
   scroll progress (derived from the `[data-stage]` section centers) and the scene reads it
   every frame - no React re-renders on scroll.
 - Each stage component fades/animates itself from its `stageWeight`; `CameraRig` blends the
   camera distance across stages.
-- Palette (`components/neuron/palette.ts`) uses Erik's actual fluorophore colors.
+- Palette (`components/neuron/palette.ts`) is a "jet" spectral ramp on a deep royal-blue
+  field (blue → cyan → yellow → orange → red), echoing the momentum-space plots of
+  quantum materials. The key names (`gfp`, `tdTomato`, `farRed`) are leftovers from the
+  earlier fluorophore palette; only the on-page `ChannelLegend` still labels real
+  fluorophores (from `lib/content.ts`).
+- Quality tiers: `NeuronJourney` drops to a `"low"` instance count on small screens
+  (< 768px) or low-core machines (`hardwareConcurrency <= 4`).
 - Reduced motion / SSR renders a static gradient field instead of the canvas.
 - `?nobloom` disables post-processing (debug aid for headless rendering).
 
@@ -39,7 +49,8 @@ canvas plays a cinematic scroll journey through scales:
 ```bash
 pnpm install
 pnpm dev      # always http://localhost:3002 - stays up, Ctrl+C stops cleanly
-pnpm build
+pnpm build    # static export to out/
+pnpm lint
 ```
 
 `pnpm dev` (or `npm run dev`) runs `scripts/dev.mjs`, which:
@@ -50,10 +61,15 @@ pnpm build
 
 Use `pnpm dev:next` for the plain `next dev` if you ever want it.
 
-Deploy target: **GitHub Pages** (auto-deploys from `.github/workflows/deploy.yml`).
+Deploy target: **GitHub Pages** - `.github/workflows/deploy.yml` auto-deploys on push to
+`katiecha/neuron-phd-portfolio-site`. The build is a static export (`output: "export"`);
+`GITHUB_PAGES=true` adds the `/erik-oldre` basePath + asset prefix for the project site,
+so a plain local `pnpm build` stays path-free.
 
 ## TODO (confirm with Erik)
 
 - Preferred title: "Ph.D. student" vs "candidate" vs "researcher" (see `lib/content.ts`).
 - Whether to add a personal statement / artist note, or any of his own microscopy images.
-- Final domain (metadata `siteUrl` in `app/layout.tsx` currently a placeholder).
+- Final domain. `siteUrl` in `app/layout.tsx` is set to `https://erikoldre.com` for
+  metadata, but the site is actually served from GitHub Pages - point one at the other
+  once the domain is decided.
