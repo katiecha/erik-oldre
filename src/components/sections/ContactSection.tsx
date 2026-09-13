@@ -9,13 +9,12 @@ const LINKS = [
 
 export function ContactSection() {
   return (
-    <section className="relative px-6 py-24 sm:px-12">
+    // Extra bottom room: Reveal only fires 15% inside the viewport, so the
+    // links would never animate in if they sat at the very end of the page.
+    <section className="relative px-6 pb-40 pt-24 sm:px-12">
       <div className="mx-auto max-w-3xl text-center">
         <Reveal>
-          <h2 className="font-serif text-2xl text-white sm:text-3xl">
-            Get in touch
-          </h2>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-sm text-white/75">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-sm text-white/75">
             {LINKS.map((l, i) => (
               <span key={l.label} className="flex items-center gap-x-5">
                 {i > 0 && <span className="text-white/25">·</span>}

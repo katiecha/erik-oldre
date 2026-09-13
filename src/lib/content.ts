@@ -4,8 +4,6 @@
  * confirm is marked with a TODO comment rather than invented.
  */
 
-import { PALETTE } from "@/components/neuron/palette";
-
 export const PROFILE = {
   name: "Erik Oldre",
   fullName: "Erik N. Oldre",
@@ -112,7 +110,8 @@ export type Stage = {
   index: number;
   /** Camera distance from the origin while this stage is centered (see CameraRig). */
   cameraZ: number;
-  eyebrow: string;
+  /** Small label above the title. Omitted on the three narrative stages. */
+  eyebrow?: string;
   title: string;
   body?: string;
 };
@@ -130,7 +129,6 @@ export const STAGES: Stage[] = [
     id: "synapse",
     index: 1,
     cameraZ: 7,
-    eyebrow: "01 - Neuroscience",
     title: "Perisomatic synaptic adhesion",
     body: "NrCAM and Ankyrin B build perisomatic synapses onto pyramidal neurons.",
   },
@@ -138,7 +136,6 @@ export const STAGES: Stage[] = [
     id: "molecule",
     index: 2,
     cameraZ: 4.6,
-    eyebrow: "02 - Structural Biology",
     title: "The Ankyrin B complex",
     body: "AlphaFold modeling of the Ankyrin B–NrCAM–β2-spectrin interface.",
   },
@@ -146,7 +143,6 @@ export const STAGES: Stage[] = [
     id: "materials",
     index: 3,
     cameraZ: 10,
-    eyebrow: "03 - Materials Science",
     title: "Chiral block copolymer self-assembly",
     body: "Toward mesostructured quantum materials.",
   },
@@ -164,10 +160,3 @@ export const STAGES: Stage[] = [
 export const STAGE_INDEX: Record<StageId, number> = Object.fromEntries(
   STAGES.map((s) => [s.id, s.index]),
 ) as Record<StageId, number>;
-
-/** Fluorophore legend rendered on the synapse stage. */
-export const CHANNEL_LEGEND = [
-  { label: "MATH2⁺ soma", color: PALETTE.soma, note: "pyramidal neuron" },
-  { label: "VGLUT3⁺ puncta", color: PALETTE.puncta, note: "CCK-basket synapse" },
-  { label: "EGFP / VGAT", color: PALETTE.gfp, note: "reporter channel" },
-] as const;

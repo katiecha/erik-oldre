@@ -5,7 +5,6 @@ import {
   NarrativeSection,
   PaperLink,
 } from "@/components/sections/NarrativeSection";
-import { ChannelLegend } from "@/components/ui/ChannelLegend";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { PALETTE } from "@/components/neuron/palette";
@@ -23,14 +22,11 @@ export default function Home() {
 
         {/* 01 - Synapse */}
         <NarrativeSection stage={STAGES[1]} accent={PALETTE.gfp} side="left">
-          <div className="space-y-6">
-            <ChannelLegend />
-            <PaperLink
-              href={PUBLICATIONS[0].url}
-              label="Curr. Res. Neurobiology"
-              accent={PALETTE.gfp}
-            />
-          </div>
+          <PaperLink
+            href={PUBLICATIONS[0].url}
+            label="Curr. Res. Neurobiology"
+            accent={PALETTE.gfp}
+          />
         </NarrativeSection>
 
         {/* 02 - Molecule */}
@@ -43,11 +39,7 @@ export default function Home() {
         </NarrativeSection>
 
         {/* 03 - Material */}
-        <NarrativeSection stage={STAGES[3]} accent={PALETTE.farRed} side="left">
-          <p className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white/70">
-            Wiesner Group · Cornell MSE
-          </p>
-        </NarrativeSection>
+        <NarrativeSection stage={STAGES[3]} accent={PALETTE.farRed} side="left" />
 
         {/* 04 - Scientist + publications + contact. */}
         <div className="relative overflow-hidden">
