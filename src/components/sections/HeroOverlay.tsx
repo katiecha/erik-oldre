@@ -6,8 +6,8 @@ export function HeroOverlay() {
       data-stage="hero"
       className="flow-section relative flex min-h-[112dvh] flex-col justify-center overflow-hidden px-6 pb-32 pt-20 sm:px-12"
     >
-      <div className="flow-caption relative max-w-4xl">
-        <p className="font-mono text-xs uppercase tracking-[0.36em] text-white/78">
+      <div className="flow-caption glass-card relative w-fit max-w-4xl">
+        <p className="font-mono text-xs uppercase tracking-[0.22em] text-white/78 sm:tracking-[0.36em]">
           {PROFILE.fellowship}
         </p>
 

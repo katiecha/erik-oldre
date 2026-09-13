@@ -13,27 +13,31 @@ export function AboutSection() {
       data-stage="about"
       className="flow-section relative flex min-h-[100dvh] items-center overflow-hidden px-6 py-28 sm:px-12"
     >
-      <div className="mx-auto grid w-full max-w-5xl gap-12 md:grid-cols-[300px_1fr] md:items-start">
-        <Reveal className="flex flex-col items-center gap-5 md:sticky md:top-28">
-          <div className="relative h-56 w-56 overflow-hidden border border-white/15 bg-[#071033]/20">
-            <Image
-              src={assetPath("/erik.jpg")}
-              alt="Erik Oldre"
-              fill
-              sizes="224px"
-              className="object-cover"
-              priority
-            />
-          </div>
-          <div className="text-center">
-            <p className="font-serif text-xl text-white">{PROFILE.fullName}</p>
-            <p className="mt-1 font-mono text-[11px] uppercase tracking-widest text-white/70">
-              {PROFILE.pronouns} · {PROFILE.height} · {PROFILE.location}
-            </p>
+      <div className="mx-auto grid w-full max-w-5xl gap-12 md:grid-cols-[320px_1fr] md:items-start">
+        <Reveal className="md:sticky md:top-28">
+          <div className="glass-card glass-card-tight flex flex-col items-center gap-5">
+            <div className="relative h-56 w-56 overflow-hidden rounded-xl border border-white/15 bg-white/5">
+              <Image
+                src={assetPath("/erik.jpg")}
+                alt="Erik Oldre"
+                fill
+                sizes="224px"
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="text-center">
+              <p className="font-serif text-xl text-white">
+                {PROFILE.fullName}
+              </p>
+              <p className="mt-1 font-mono text-[11px] uppercase tracking-wider text-white/70">
+                {PROFILE.pronouns} · {PROFILE.height} · {PROFILE.location}
+              </p>
+            </div>
           </div>
         </Reveal>
 
-        <div className="flow-caption">
+        <div className="flow-caption glass-card">
           <Reveal>
             <SectionHeading
               eyebrow={about.eyebrow}

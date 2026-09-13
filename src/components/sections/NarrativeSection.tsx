@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 /**
  * Shared layout for the three narrative stages (synapse / molecule / material).
- * Copy behaves like a figure annotation suspended in the light field.
+ * Copy sits on a frosted panel floating in the light field.
  */
 export function NarrativeSection({
   stage,
@@ -30,10 +30,12 @@ export function NarrativeSection({
           side === "right" ? "flow-caption-right" : "flow-caption-left"
         }`}
       >
-        <SectionHeading eyebrow={stage.eyebrow} title={stage.title} accent={accent}>
-          <p>{stage.body}</p>
-        </SectionHeading>
-        {children && <div className="mt-8">{children}</div>}
+        <div className="glass-card">
+          <SectionHeading eyebrow={stage.eyebrow} title={stage.title} accent={accent}>
+            <p>{stage.body}</p>
+          </SectionHeading>
+          {children && <div className="mt-8">{children}</div>}
+        </div>
       </Reveal>
     </section>
   );
@@ -42,7 +44,7 @@ export function NarrativeSection({
 /**
  * A small inline link to a paper, styled as a scientific citation chip.
  *
- * The chip carries its own near-black ground on purpose: the accent colours are
+ * The chip carries its own frosted ground on purpose: the accent colours are
  * saturated rather than bright, and at 12px they disappear when a lit part of
  * the field drifts behind them.
  */
@@ -60,7 +62,7 @@ export function PaperLink({
       href={href}
       target="_blank"
       rel="noreferrer noopener"
-      className="inline-flex items-center gap-2 rounded-full border bg-[#06020E]/80 px-4 py-2 font-mono text-xs uppercase tracking-wider backdrop-blur-[2px] transition-colors hover:text-white"
+      className="glass-pill inline-flex items-center gap-2 rounded-full px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors hover:text-white"
       style={{ borderColor: `${accent}55`, color: accent }}
     >
       {label} ↗

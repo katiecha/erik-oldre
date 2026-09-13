@@ -52,12 +52,66 @@ body {
   );
 }
 
-.flow-section {
-  isolation: isolate;
+/* Captions are frosted-glass panels floating over the field. The dark tint is
+   what carries contrast (white copy and saturated accents both have to hold up
+   over a lit part of the ramp); the blur and the hairline are what make it read
+   as glass rather than as a box.
+
+   Deliberately NOT applied to an element that framer-motion animates: opacity
+   and will-change both establish a backdrop root, which would cut the panel off
+   from the canvas it is supposed to be sampling. Same reason .flow-section no
+   longer sets `isolation: isolate`. */
+.glass-card {
+  position: relative;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.015) 46%,
+      rgba(255, 255, 255, 0.05)
+    ),
+    rgba(9, 3, 18, 0.62);
+  box-shadow:
+    0 24px 60px -24px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px) saturate(130%);
+  -webkit-backdrop-filter: blur(20px) saturate(130%);
 }
 
-/* Captions sit as white type directly in the field (like the reference plots).
-   No shadows - legibility comes from bright type over a near-black field. */
+@media (min-width: 640px) {
+  .glass-card {
+    border-radius: 1.5rem;
+    padding: 2.25rem;
+  }
+}
+
+/* Narrow columns (the portrait card) need the padding back off. */
+.glass-card-tight {
+  padding: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .glass-card-tight {
+    padding: 1.5rem;
+  }
+}
+
+/* A pill for short single-line content (citation chips, the contact row). */
+.glass-pill {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02)),
+    rgba(9, 3, 18, 0.62);
+  box-shadow:
+    0 12px 30px -14px rgba(0, 0, 0, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+}
+
 .flow-caption {
   position: relative;
 }
@@ -68,40 +122,6 @@ body {
 
 .flow-caption-right {
   padding-right: clamp(0rem, 2vw, 2rem);
-}
-
-/* Captions sit on whatever the flow field happens to be doing behind them, and
-   the field runs from near-black to lit violet. A soft elliptical scrim gives
-   the type its own ground so both white copy and the accent colours hold up
-   wherever a stage lands. Radii are under half the box so the falloff reaches
-   zero inside every edge - no card outline. */
-.flow-caption::before {
-  content: "";
-  position: absolute;
-  inset: -4rem -5rem -6rem;
-  z-index: -1;
-  background: radial-gradient(
-    56% 54% at 50% 50%,
-    rgba(6, 2, 14, 0.94),
-    rgba(6, 2, 14, 0.78) 42%,
-    rgba(6, 2, 14, 0.38) 68%,
-    transparent 92%
-  );
-}
-
-/* Phones put the copy and the subject in one column, so the scrim has to work
-   harder - and its left/right edges land at the viewport edges anyway. */
-@media (max-width: 767px) {
-  .flow-caption::before {
-    inset: -3rem -1.75rem -5rem;
-    background: radial-gradient(
-      92% 52% at 45% 50%,
-      rgba(6, 2, 14, 0.9),
-      rgba(6, 2, 14, 0.68) 46%,
-      rgba(6, 2, 14, 0.3) 72%,
-      transparent 92%
-    );
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
