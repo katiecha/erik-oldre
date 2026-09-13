@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { useEffect, useState, type ReactNode } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { PALETTE } from "./palette";
 import { prefersReducedMotion } from "./useScrollStage";
@@ -19,6 +19,13 @@ export type Quality = "high" | "low";
 const CAMERA_START = { position: [0, 0, 15] as [number, number, number], fov: 50, near: 0.1, far: 100 };
 const FOG_NEAR = 12;
 const FOG_FAR = 30;
+
+/** Aspect the stage framing was composed against (a ~16:10 desktop window). */
+const REFERENCE_ASPECT = 1.6;
+/** How hard to shrink as the viewport narrows. 1 = keep horizontal extent exactly. */
+const FIT_EXPONENT = 0.6;
+/** Never shrink past this - the subjects should still read as objects. */
+const MIN_FIT = 0.42;
 
 /**
  * The single persistent WebGL canvas behind the whole page. Fixed, full-bleed,
@@ -68,14 +75,42 @@ export function NeuronJourney() {
         <SpectralField />
         <CameraRig />
 
-        <NeuronNetwork quality={quality} />
-        <PyramidalNeuron quality={quality} />
-        <ProteinSolenoid />
-        <BlockCopolymer quality={quality} />
+        <SubjectFrame>
+          <NeuronNetwork quality={quality} />
+          <PyramidalNeuron quality={quality} />
+          <ProteinSolenoid />
+          <BlockCopolymer quality={quality} />
+        </SubjectFrame>
 
         {bloom && <Effects />}
       </Canvas>
     </div>
+  );
+}
+
+/**
+ * The camera FOV is vertical, so a portrait viewport gets far less horizontal
+ * room than the desktop framing assumed - the subjects blow up past the edges
+ * and sit right under the copy. Scale them down as the viewport narrows, and
+ * drop them below the caption block so the two stop fighting. Desktop aspects
+ * pass through untouched (scale 1, no offset).
+ */
+function SubjectFrame({ children }: { children: ReactNode }) {
+  const width = useThree((s) => s.size.width);
+  const height = useThree((s) => s.size.height);
+  const aspect = width / height;
+
+  const fit = Math.max(
+    MIN_FIT,
+    Math.min(1, Math.pow(aspect / REFERENCE_ASPECT, FIT_EXPONENT)),
+  );
+  // Only portrait needs the subjects pushed under the copy.
+  const dropY = aspect < 1 ? -(1 - aspect) * 1.8 : 0;
+
+  return (
+    <group scale={fit} position={[0, dropY, 0]}>
+      {children}
+    </group>
   );
 }
 

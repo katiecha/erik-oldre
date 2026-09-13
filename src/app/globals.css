@@ -70,6 +70,27 @@ body {
   padding-right: clamp(0rem, 2vw, 2rem);
 }
 
+/* On phones the copy and the 3D subject share the same column, so the type
+   needs its own ground. A soft scrim keeps the accent colours legible where
+   the field washes out to near-white. */
+@media (max-width: 767px) {
+  .flow-caption::before {
+    content: "";
+    position: absolute;
+    /* The left/right edges land at the viewport edges, so only the vertical
+       falloff has to reach zero inside the box - hence the 52% y-radius. */
+    inset: -3rem -1.75rem -5rem;
+    z-index: -1;
+    background: radial-gradient(
+      92% 52% at 45% 50%,
+      rgba(7, 19, 64, 0.8),
+      rgba(7, 19, 64, 0.52) 46%,
+      rgba(7, 19, 64, 0.2) 72%,
+      transparent 92%
+    );
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
