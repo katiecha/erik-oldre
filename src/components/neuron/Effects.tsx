@@ -20,8 +20,8 @@ const BLOOM_LUMINANCE_SMOOTHING = 0.45;
 const BLOOM_INTENSITY = 0.45;
 /** Keeps the glow tight around its source instead of spread over the frame. */
 const BLOOM_RADIUS = 0.35;
-const VIGNETTE_OFFSET = 0.18;
-const VIGNETTE_DARKNESS = 0.78;
+const VIGNETTE_OFFSET = 0.42;
+const VIGNETTE_DARKNESS = 0.42;
 
 /**
  * Post-processing that gives the scene its fluorescence-microscopy glow.

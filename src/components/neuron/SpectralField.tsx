@@ -101,9 +101,10 @@ const fragmentShader = /* glsl */ `
     hot = mix(hot, cAmber, smoothstep(0.84, 1.0, f));
     col += bloom * hot * 0.22;
 
-    // Vignette hard enough that the edges genuinely fall to black.
-    float vignette = smoothstep(1.02, 0.20, distance(vUv, vec2(0.5)));
-    col *= 0.34 + 0.66 * vignette;
+    // A gentle falloff, not a black frame - the corners should still read as
+    // field rather than as an edge of the page.
+    float vignette = smoothstep(1.25, 0.30, distance(vUv, vec2(0.5)));
+    col *= 0.66 + 0.34 * vignette;
 
     // Hard ceiling on brightness so type never loses its ground.
     float l = luma(col);

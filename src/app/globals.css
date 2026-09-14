@@ -55,29 +55,22 @@ body {
 /* Three type roles, and nothing mixes them:
      - Fraunces (serif) for titles and names only
      - Inter (sans, the body default) for every piece of running text
-     - JetBrains Mono for metadata labels, which are ALWAYS uppercase + tracked
-   .type-label is that third role in one place, so the tracking cannot drift
-   from element to element the way it had. */
+     - JetBrains Mono for metadata labels
+   .type-label is that third role in one place, so its treatment cannot drift
+   from element to element the way it had. Sentence case, not uppercase - the
+   tracking is small to match, since wide tracking only reads well on caps. */
 .type-label {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.5;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.06em;
 }
 
-@media (min-width: 640px) {
-  .type-label {
-    letter-spacing: 0.28em;
-  }
-}
-
-/* Same role, for labels long enough that the full tracking would wrap (the
-   identity line under the portrait, the date column, the citation chips).
-   Declared after .type-label so it wins at every breakpoint. */
+/* Same role, for secondary metadata (the identity line under the portrait, the
+   date column, the citation chips). Declared after .type-label so it wins. */
 .type-label-sm {
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
 }
 
 /* Captions are frosted-glass panels floating over the field. The tint is light

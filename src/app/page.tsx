@@ -6,7 +6,6 @@ import {
   PaperLink,
 } from "@/components/sections/NarrativeSection";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { ContactSection } from "@/components/sections/ContactSection";
 import { PALETTE } from "@/components/neuron/palette";
 import { STAGES, PUBLICATIONS } from "@/lib/content";
 
@@ -26,17 +25,16 @@ export default function Home() {
         </NarrativeSection>
 
         {/* 02 - Molecule */}
-        <NarrativeSection stage={STAGES[2]} accent={PALETTE.puncta} side="right">
+        <NarrativeSection stage={STAGES[2]} accent={PALETTE.gfp} side="right">
           <PaperLink href={PUBLICATIONS[1].url} label="J. Biological Chemistry" />
         </NarrativeSection>
 
         {/* 03 - Material */}
-        <NarrativeSection stage={STAGES[3]} accent={PALETTE.farRed} side="left" />
+        <NarrativeSection stage={STAGES[3]} accent={PALETTE.gfp} side="left" />
 
-        {/* 04 - Scientist + publications + contact. */}
+        {/* 04 - Scientist. Contact lives inside this card; there is no footer. */}
         <div className="relative overflow-hidden">
           <AboutSection />
-          <ContactSection />
         </div>
       </main>
     </>

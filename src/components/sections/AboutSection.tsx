@@ -7,6 +7,12 @@ import { Reveal } from "@/components/ui/Reveal";
 
 const about = STAGES[4];
 
+const LINKS = [
+  { label: "Email", href: PROFILE.links.email, external: false },
+  { label: "LinkedIn", href: PROFILE.links.linkedin, external: true },
+  { label: "Instagram", href: PROFILE.links.instagram, external: true },
+];
+
 export function AboutSection() {
   return (
     <section
@@ -74,6 +80,24 @@ export function AboutSection() {
                 </li>
               ))}
             </ul>
+          </Reveal>
+
+          <Reveal delay={0.15} className="mt-12 border-t border-white/10 pt-6">
+            <div className="type-label flex flex-wrap items-center gap-x-5 gap-y-2 text-white/80">
+              {LINKS.map((l, i) => (
+                <span key={l.label} className="flex items-center gap-x-5">
+                  {i > 0 && <span className="text-white/25">·</span>}
+                  <a
+                    href={l.href}
+                    target={l.external ? "_blank" : undefined}
+                    rel={l.external ? "noreferrer noopener" : undefined}
+                    className="transition-colors hover:text-gfp"
+                  >
+                    {l.label}
+                  </a>
+                </span>
+              ))}
+            </div>
           </Reveal>
         </div>
       </div>
