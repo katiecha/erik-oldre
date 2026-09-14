@@ -47,7 +47,8 @@ export function NarrativeSection({
  * the papers are one category, so they should not read as colour-coded by stage.
  *
  * The chip carries its own frosted ground on purpose: at this size the accent
- * disappears when a lit part of the field drifts behind it.
+ * disappears when a lit part of the field drifts behind it. Its edge comes from
+ * .glass-pill, so the accent lives only in the type.
  */
 export function PaperLink({ href, label }: { href: string; label: string }) {
   return (
@@ -56,7 +57,7 @@ export function PaperLink({ href, label }: { href: string; label: string }) {
       target="_blank"
       rel="noreferrer noopener"
       className="type-label type-label-sm glass-pill inline-flex items-center gap-2 rounded-full px-4 py-2 transition-colors hover:text-white"
-      style={{ borderColor: `${PALETTE.gfp}55`, color: PALETTE.gfp }}
+      style={{ color: PALETTE.gfp }}
     >
       {label} ↗
     </a>
