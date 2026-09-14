@@ -56,7 +56,7 @@ export function PaperLink({ href, label }: { href: string; label: string }) {
       href={href}
       target="_blank"
       rel="noreferrer noopener"
-      className="glass-pill inline-flex items-center gap-2 rounded-full px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors hover:text-white"
+      className="type-label type-label-sm glass-pill inline-flex items-center gap-2 rounded-full px-4 py-2 transition-colors hover:text-white"
       style={{ borderColor: `${PALETTE.puncta}55`, color: PALETTE.puncta }}
     >
       {label} ↗

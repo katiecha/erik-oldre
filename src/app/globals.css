@@ -52,6 +52,34 @@ body {
   );
 }
 
+/* Three type roles, and nothing mixes them:
+     - Fraunces (serif) for titles and names only
+     - Inter (sans, the body default) for every piece of running text
+     - JetBrains Mono for metadata labels, which are ALWAYS uppercase + tracked
+   .type-label is that third role in one place, so the tracking cannot drift
+   from element to element the way it had. */
+.type-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+@media (min-width: 640px) {
+  .type-label {
+    letter-spacing: 0.28em;
+  }
+}
+
+/* Same role, for labels long enough that the full tracking would wrap (the
+   identity line under the portrait, the date column, the citation chips).
+   Declared after .type-label so it wins at every breakpoint. */
+.type-label-sm {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+}
+
 /* Captions are frosted-glass panels floating over the field. The tint is light
    enough that the field still reads through; most of the legibility comes from
    the blur flattening whatever is behind the type. The hero deliberately has no

@@ -19,7 +19,7 @@ export function SectionHeading({
     <div className={center ? "mx-auto max-w-xl text-center" : "max-w-xl"}>
       {eyebrow && (
         <p
-          className="font-mono text-xs uppercase tracking-[0.35em]"
+          className="type-label"
           style={{ color: accent }}
         >
           {eyebrow}
