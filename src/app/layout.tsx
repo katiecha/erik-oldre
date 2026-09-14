@@ -22,6 +22,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 const siteUrl = "https://erikoldre.com";
 
+// The icon / opengraph-image / twitter-image files in this directory supply the
+// image tags; Next resolves their URLs against basePath, which a hand-written
+// "/erik.jpg" did not. See app-icons.md and opengraph-image.md in the Next docs.
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Erik Oldre - Materials Scientist",
@@ -44,7 +47,6 @@ export const metadata: Metadata = {
       "Research in block copolymer self-assembly, synaptic cell adhesion, and quantum materials.",
     url: siteUrl,
     siteName: "Erik Oldre",
-    images: [{ url: "/erik.jpg", width: 800, height: 800, alt: "Erik Oldre" }],
     type: "website",
   },
   twitter: {
@@ -52,7 +54,6 @@ export const metadata: Metadata = {
     title: "Erik Oldre - Materials Scientist",
     description:
       "Research in block copolymer self-assembly, synaptic cell adhesion, and quantum materials.",
-    images: ["/erik.jpg"],
   },
 };
 
