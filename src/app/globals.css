@@ -52,10 +52,10 @@ body {
   );
 }
 
-/* Captions are frosted-glass panels floating over the field. The dark tint is
-   what carries contrast (white copy and saturated accents both have to hold up
-   over a lit part of the ramp); the blur and the hairline are what make it read
-   as glass rather than as a box.
+/* Captions are frosted-glass panels floating over the field. The tint is light
+   enough that the field still reads through; most of the legibility comes from
+   the blur flattening whatever is behind the type. The hero deliberately has no
+   panel at all - it is display type and reads fine bare.
 
    Deliberately NOT applied to an element that framer-motion animates: opacity
    and will-change both establish a backdrop root, which would cut the panel off
@@ -63,27 +63,26 @@ body {
    longer sets `isolation: isolate`. */
 .glass-card {
   position: relative;
-  border-radius: 1.25rem;
+  border-radius: 6px;
   padding: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   background:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.08),
-      rgba(255, 255, 255, 0.015) 46%,
-      rgba(255, 255, 255, 0.05)
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.01) 52%,
+      rgba(255, 255, 255, 0.03)
     ),
-    rgba(9, 3, 18, 0.62);
+    rgba(9, 3, 18, 0.34);
   box-shadow:
-    0 24px 60px -24px rgba(0, 0, 0, 0.85),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(20px) saturate(130%);
-  -webkit-backdrop-filter: blur(20px) saturate(130%);
+    0 18px 48px -28px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
 }
 
 @media (min-width: 640px) {
   .glass-card {
-    border-radius: 1.5rem;
     padding: 2.25rem;
   }
 }
@@ -101,15 +100,15 @@ body {
 
 /* A pill for short single-line content (citation chips, the contact row). */
 .glass-pill {
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02)),
-    rgba(9, 3, 18, 0.62);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
+    rgba(9, 3, 18, 0.38);
   box-shadow:
-    0 12px 30px -14px rgba(0, 0, 0, 0.8),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(14px) saturate(130%);
-  -webkit-backdrop-filter: blur(14px) saturate(130%);
+    0 10px 24px -16px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
 }
 
 .flow-caption {

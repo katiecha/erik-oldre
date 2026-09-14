@@ -22,20 +22,12 @@ export default function Home() {
 
         {/* 01 - Synapse */}
         <NarrativeSection stage={STAGES[1]} accent={PALETTE.gfp} side="left">
-          <PaperLink
-            href={PUBLICATIONS[0].url}
-            label="Curr. Res. Neurobiology"
-            accent={PALETTE.gfp}
-          />
+          <PaperLink href={PUBLICATIONS[0].url} label="Curr. Res. Neurobiology" />
         </NarrativeSection>
 
         {/* 02 - Molecule */}
         <NarrativeSection stage={STAGES[2]} accent={PALETTE.puncta} side="right">
-          <PaperLink
-            href={PUBLICATIONS[1].url}
-            label="J. Biological Chemistry"
-            accent={PALETTE.puncta}
-          />
+          <PaperLink href={PUBLICATIONS[1].url} label="J. Biological Chemistry" />
         </NarrativeSection>
 
         {/* 03 - Material */}

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { Stage } from "@/lib/content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { PALETTE } from "@/components/neuron/palette";
 
 /**
  * Shared layout for the three narrative stages (synapse / molecule / material).
@@ -42,28 +43,21 @@ export function NarrativeSection({
 }
 
 /**
- * A small inline link to a paper, styled as a scientific citation chip.
+ * A small inline link to a paper. Every citation uses the same crimson accent -
+ * the papers are one category, so they should not read as colour-coded by stage.
  *
- * The chip carries its own frosted ground on purpose: the accent colours are
- * saturated rather than bright, and at 12px they disappear when a lit part of
- * the field drifts behind them.
+ * The chip carries its own frosted ground on purpose: the accent is saturated
+ * rather than bright, and at 12px it disappears when a lit part of the field
+ * drifts behind it.
  */
-export function PaperLink({
-  href,
-  label,
-  accent,
-}: {
-  href: string;
-  label: string;
-  accent: string;
-}) {
+export function PaperLink({ href, label }: { href: string; label: string }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noreferrer noopener"
       className="glass-pill inline-flex items-center gap-2 rounded-full px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors hover:text-white"
-      style={{ borderColor: `${accent}55`, color: accent }}
+      style={{ borderColor: `${PALETTE.puncta}55`, color: PALETTE.puncta }}
     >
       {label} ↗
     </a>

@@ -16,7 +16,7 @@ export function AboutSection() {
       <div className="mx-auto grid w-full max-w-5xl gap-12 md:grid-cols-[320px_1fr] md:items-start">
         <Reveal className="md:sticky md:top-28">
           <div className="glass-card glass-card-tight flex flex-col items-center gap-5">
-            <div className="relative h-56 w-56 overflow-hidden rounded-xl border border-white/15 bg-white/5">
+            <div className="relative h-56 w-56 overflow-hidden rounded-[4px] border border-white/15 bg-white/5">
               <Image
                 src={assetPath("/erik.jpg")}
                 alt="Erik Oldre"
